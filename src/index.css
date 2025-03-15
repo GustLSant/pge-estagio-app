@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'Inter';
+  src: url('/inter-font/Inter-VariableFont.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
   --darkblue: #01448a;
   --lightblue: #006ea2;
@@ -17,6 +24,8 @@
   box-sizing: border-box;
   border: none;
   outline: none;
+  font-weight: normal;
+  font-family: 'Inter';
 }
 
 a{
