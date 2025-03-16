@@ -23,11 +23,13 @@ const defaultProps:TextInputProps = {
 export default function TextInput(_props:TextInputProps){
     const props:TextInputProps = {...defaultProps, ..._props};
     const [text, setText] = useState('');
+
     const errorClass = (props.error) ? 'error' : '';
     const disabledClass = (props.disabled) ? 'disabled' : '';
+    const fullClass = 'text-input ' + errorClass + ' ' + disabledClass
 
     return(
-        <div className={`text-input ${errorClass} ${disabledClass}`} style={{fontSize: props.fontSize}}>
+        <div className={fullClass} style={{fontSize: props.fontSize}}>
             <p className='text-input__label'>{props.label}:</p>
             
             <input type="text" value={text} onChange={(e)=>{setText(e.target.value)}} style={{fontSize: props.fontSize}} />
