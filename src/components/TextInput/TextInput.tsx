@@ -2,6 +2,8 @@ import { useState } from "react"
 import './TextInput.css'
 
 type TextInputProps = {
+    value: string,
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
     label: string,
     secret?: boolean,
     fontSize?: string,
@@ -10,7 +12,11 @@ type TextInputProps = {
     disabled?: boolean,
 }
 
+const defaultOnChangeFunc = (e: React.ChangeEvent<HTMLInputElement>)=>{}
+
 const defaultProps:TextInputProps = {
+    value: '',
+    onChange: defaultOnChangeFunc,
     label: 'Label',
     secret: false,
     fontSize: '16px',
@@ -22,8 +28,7 @@ const defaultProps:TextInputProps = {
 
 export default function TextInput(_props:TextInputProps){
     const props:TextInputProps = {...defaultProps, ..._props};
-    const [text, setText] = useState('');
-
+    
     const errorClass = (props.error) ? 'error' : '';
     const disabledClass = (props.disabled) ? 'disabled' : '';
     const fullClass = 'text-input ' + errorClass + ' ' + disabledClass
@@ -35,9 +40,9 @@ export default function TextInput(_props:TextInputProps){
             {
                 props.secret
                 ? 
-                <input type="password" value={text} onChange={(e)=>{setText(e.target.value)}} style={{fontSize: props.fontSize}} />
+                <input type="password" value={props.value} onChange={props.onChange} style={{fontSize: props.fontSize}} />
                 :
-                <input type="text" value={text} onChange={(e)=>{setText(e.target.value)}} style={{fontSize: props.fontSize}} />
+                <input type="text" value={props.value} onChange={props.onChange} style={{fontSize: props.fontSize}} />
             }
             
             
