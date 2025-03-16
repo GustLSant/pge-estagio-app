@@ -12,13 +12,28 @@
 }
 
 .login-page__left-section{
-    background-image: var(--blue-gradient-01);
+    background-image: url('/logo-alt-transp-branca-5.png'), var(--blue-gradient-01);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
     color: white;
+
+    .left-section__logo{
+        width: min(400px, 100%);
+        display: block;
+    }
 }
 
 .login-page__right-section{
     background-color: var(--background);
     box-shadow: -4px 0px 4px rgba(0,0,0, 0.15);
+
+    flex-direction: column;
+    gap: 30px;
+    .right-section__logo{
+        width: clamp(0px, 100%, 321px); /* 321px eh o tamanho da div que tem os inputs do login */
+        display: block;
+    }
 
     .right-section__login-container{
         display: flex;
@@ -56,7 +71,43 @@
 }
 
 
+@media (max-width: 600px) {
+    .login-page{
+        grid-template-columns: 1fr;
+    }
 
+    .login-page > section{
+        flex-direction: column;
+        justify-content: space-evenly;
+        padding: 30px
+    }
+
+    .login-page__left-section{
+        display: none !important;
+    }
+
+    .login-page__right-section{
+        background-image: url('/logo-alt-transp-branca-5.png'), var(--blue-gradient-01);
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        color: white;
+
+        .right-section__logo{
+            display: block;
+        }
+
+        .right-section__login-container{
+            gap: 20px;
+
+            .login-container__buttons-container{
+                gap: 10px;
+            }
+        }
+    }
+
+    
+}
 
 
 

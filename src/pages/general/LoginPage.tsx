@@ -9,10 +9,12 @@ export default function LoginPage(){
     return(
         <div className="login-page">
             <section className='login-page__left-section'>
-                <h1>Logo</h1>
+                {/* <img className='left-section__logo' src="/logo.png" alt="Procuradoria Geral do Estado de Sergipe" /> */}
             </section>
 
             <section className='login-page__right-section'>
+                {/* <img className='right-section__logo' src="/logo.png" alt="Procuradoria Geral do Estado de Sergipe" /> */}
+
                 <div className='right-section__login-container'>
                     <div>
                         <h1>Seja bem-vindo!</h1>

@@ -7,7 +7,7 @@
         width: 100%; /* para responsividade */
         border: 1px solid var(--darkgray);
         border-radius: var(--border-radius-01);
-        padding: 0.75em 0.75em;
+        padding: 0.6em 0.6em;
 
         appearance: none;
         -webkit-appearance: none;
