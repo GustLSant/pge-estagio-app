@@ -1,10 +1,11 @@
 import { IconType } from 'react-icons';
+import { BiLoaderAlt } from "react-icons/bi";
 import './Button.css'
 
 type ButtonProps = {
     label: string,
     variant?: 'solid' | 'outlined',
-    color?: 'light' | 'dark',
+    colorVariant?: 'light' | 'dark',
     grow?: boolean,
     fontSize?: string,
     gap?: string,
@@ -13,12 +14,14 @@ type ButtonProps = {
     leftIcon?: IconType,
     rightIcon?: IconType,
     iconSize?: string,
+    loading?: boolean,
+    disabled?: boolean,
 }
 
 const defaultProps:ButtonProps = {
     label: 'label',
     variant: 'solid',
-    color: 'dark',
+    colorVariant: 'dark',
     grow: false,
     fontSize: '1.15em',
     gap: '3px',
@@ -27,14 +30,18 @@ const defaultProps:ButtonProps = {
     leftIcon: undefined,
     rightIcon: undefined,
     iconSize: '1.35em',
+    loading: false,
+    disabled: false,
 };
 
 
 export default function Button(_props:ButtonProps){
-    const props:ButtonProps = { /* fiz assim pois o Button.defaultProps nao estava funcionando */
-        ...defaultProps,
-        ..._props
-    };
+    const props:ButtonProps = {...defaultProps, ..._props};
+
+    const growClass = (props.grow) ? 'grow' : ''
+    const loadingClass = (props.loading) ? 'loading' : '';
+    const disabledClass = (props.disabled) ? 'disabled' : '';
+    const fullClass = 'button shadow-01 ' + props.variant + ' ' + props.colorVariant + ' ' + growClass + ' ' + loadingClass + ' ' + disabledClass
     
     const style = {
         fontSize: props.fontSize,
@@ -47,10 +54,18 @@ export default function Button(_props:ButtonProps){
 
 
     return(
-        <button className={`button shadow-01 ${props.variant} ${props.color} ${(props.grow)?'grow':''}`} style={style}>
-            {props.leftIcon && <props.leftIcon style={{fontSize: props.iconSize}} />}
-            <p>{props.label}</p>
-            {props.rightIcon && <props.rightIcon style={{fontSize: props.iconSize}} />}
+        <button className={fullClass} style={style}>
+            {
+                props.loading
+                ?
+                <BiLoaderAlt className='button__loading-icon' style={{fontSize: props.iconSize}} />
+                :
+                <>
+                    {props.leftIcon && <props.leftIcon style={{fontSize: props.iconSize}} />}
+                    <p>{props.label}</p>
+                    {props.rightIcon && <props.rightIcon style={{fontSize: props.iconSize}} />}
+                </>
+            }
         </button>
     )
 }
