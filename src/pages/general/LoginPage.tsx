@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import TextInput from '../../components/TextInput/TextInput';
 import Button from '../../components/Button/Button'
 import { BiLogIn } from "react-icons/bi";
@@ -5,6 +6,19 @@ import './LoginPage.css'
 
 
 export default function LoginPage(){
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    
+
+    function onChangeEmailInput(e: React.ChangeEvent<HTMLInputElement>){
+        setEmail(e.target.value);
+    }
+
+    function onChangePasswordlInput(e: React.ChangeEvent<HTMLInputElement>){
+        setPassword(e.target.value);
+    }
+
+
 
     return(
         <div className="login-page">
@@ -21,8 +35,8 @@ export default function LoginPage(){
                         <h2>Digite suas credenciais nos campos abaixo:</h2>
                     </div>
                     <div>
-                        <TextInput label='Email' fontSize='16px'  />
-                        <TextInput label='Senha' fontSize='16px' secret />
+                        <TextInput value={email} onChange={onChangeEmailInput} label='Email' fontSize='16px'  />
+                        <TextInput value={password} onChange={onChangePasswordlInput} label='Senha' fontSize='16px' secret />
                     </div>
                     <div className='login-container__buttons-container'>
                         <Button label='Entrar' variant='solid' rightIcon={BiLogIn} grow />
