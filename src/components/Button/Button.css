@@ -1,0 +1,40 @@
+.button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.15em;
+    font-weight: 300;
+}
+
+/* efeitos de UX */
+.button:hover{
+    cursor: pointer;
+    filter: brightness(120%);
+}
+.button:active{
+    cursor: pointer;
+    background-image: linear-gradient(to bottom, rgba(0,0,0, 0.2), rgba(0,0,0, 0.2)); /* efeito de escurecimento */
+}
+
+/* VARIANTES */
+.button.solid{
+    background-color: var(--lightblue);
+    color: white;
+}
+.button.outlined{
+    border: 1px solid var(--darkblue);
+}
+
+/* CORES */
+.button.light{
+    background-color: var(--lightblue);
+}
+.button.dark{
+    background-color: var(--lightblue);
+}
+
+/* TAMANHO */
+.button.grow{
+    flex-grow: 1;
+    align-self: stretch;
+}
