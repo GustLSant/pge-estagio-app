@@ -3,7 +3,7 @@ import './TextInput.css'
 
 type TextInputProps = {
     label: string,
-    isSecrect?: boolean,
+    secret?: boolean,
     fontSize?: string,
     helperText?: string,
     error?: boolean,
@@ -12,7 +12,7 @@ type TextInputProps = {
 
 const defaultProps:TextInputProps = {
     label: 'Label',
-    isSecrect: false,
+    secret: false,
     fontSize: '16px',
     helperText: '',
     error: false,
@@ -32,7 +32,14 @@ export default function TextInput(_props:TextInputProps){
         <div className={fullClass} style={{fontSize: props.fontSize}}>
             <p className='text-input__label'>{props.label}:</p>
             
-            <input type="text" value={text} onChange={(e)=>{setText(e.target.value)}} style={{fontSize: props.fontSize}} />
+            {
+                props.secret
+                ? 
+                <input type="password" value={text} onChange={(e)=>{setText(e.target.value)}} style={{fontSize: props.fontSize}} />
+                :
+                <input type="text" value={text} onChange={(e)=>{setText(e.target.value)}} style={{fontSize: props.fontSize}} />
+            }
+            
             
             {
                 props.helperText &&
