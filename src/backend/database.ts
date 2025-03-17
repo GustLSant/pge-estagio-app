@@ -1,36 +1,10 @@
-export type AccountCredentialType = {
-    id: number,                /* mesmo ID do User */
-    email: string,
-    password: string,
-}
+import { AccountCredentials, User, Process } from "../types"
 
-export type UserType = {
-    id: number,                /* mesmo ID do AccountCredential */
-    shortName: string,
-    fullName: string,
-    role: 'client' | 'attorney',
-    email: string,
-    cpf: string,
-    oab?: string | undefined,  /* somente procuradores possuem esse campo */
-    registerDate: Date,        /* formato ISO 8601: yyyy-mm-ddThh:mm:ss */
-}
-
-export type ProcessType = {
-    id: number,
-    number: string,
-    attorneyId: number,
-    clientId: number,
-    place: string,
-    courtDivision: string,
-    court: string,
-    startDate: Date,
-    endDate: Date,
-}
 
 type Database = {
-    accountCredentials: AccountCredentialType[],
-    users: UserType[],
-    process: ProcessType[]
+    accountCredentials: AccountCredentials[],
+    users: User[],
+    process: Process[]
 }
 
 

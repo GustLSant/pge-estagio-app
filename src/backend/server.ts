@@ -1,6 +1,7 @@
-import { defaultDatabase, AccountCredentialType } from './database';
+import { defaultDatabase } from './database';
+import { AccountCredentials } from '../types';
 
-export type ResponseType = {
+export type Response = {
     status: 200 | 201 | 401 | 404 | 500,
     message: string,
     data: any,
@@ -25,12 +26,12 @@ function saveDefaultDatabaseOnSessionStorage(){
 }
 
 
-export function tryLogin(email: string, password: string): ResponseType{
+export function tryLogin(email: string, password: string): Response{
     const sessionData: string | null = sessionStorage.getItem('accountCredentials');
     
     if(sessionData){
-        const accountCredentials: AccountCredentialType[] = JSON.parse(sessionData);
-        const foundAccount: AccountCredentialType | undefined = accountCredentials.find((element)=>{return (element.email === email)});
+        const accountCredentials: AccountCredentials[] = JSON.parse(sessionData);
+        const foundAccount: AccountCredentials | undefined = accountCredentials.find((element)=>{return (element.email === email)});
         if(foundAccount){
             if(foundAccount.password === password){
                 return {
