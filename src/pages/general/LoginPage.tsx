@@ -38,12 +38,12 @@ export default function LoginPage(){
     }
 
 
-    async function onClickLoginButton(){
+    async function handleClickLoginButton(){
         const currentError:LoginError = {...defaultLoginError};
 
         if(email.length === 0){
             currentError.emailError = true;
-            currentError.emailHelperText = 'Email inválido';
+            currentError.emailHelperText = 'Insira seu email';
         }
         else{
             currentError.emailError = false;
@@ -89,6 +89,13 @@ export default function LoginPage(){
     }
 
 
+    function handleKeyDown(e:React.KeyboardEvent){
+        if(e.key === 'Enter'){
+            handleClickLoginButton();
+        }
+    }
+
+
     return(
         <div className="login-page">
             <section className='login-page__left-section'>
@@ -98,7 +105,7 @@ export default function LoginPage(){
             <section className='login-page__right-section'>
                 {/* <img className='right-section__logo' src="/logo.png" alt="Procuradoria Geral do Estado de Sergipe" /> */}
 
-                <div className='right-section__login-container'>
+                <div className='right-section__login-container' onKeyDown={handleKeyDown}>
                     <div>
                         <h1>Seja bem-vindo!</h1>
                         <h2>Digite suas credenciais nos campos abaixo:</h2>
@@ -108,7 +115,7 @@ export default function LoginPage(){
                         <TextInput value={password} onChange={onChangePasswordlInput} label='Senha' fontSize='16px' secret disabled={isLoading} error={errors.passwordError} helperText={errors.passwordHelperText} />
                     </div>
                     <div className='login-container__buttons-container'>
-                        <Button label='Entrar' onClick={onClickLoginButton} loading={isLoading} variant='solid' rightIcon={BiLogIn} grow />
+                        <Button label='Entrar' onClick={handleClickLoginButton} loading={isLoading} variant='solid' rightIcon={BiLogIn} grow />
                         <p className='login-container__forgot-password'>Esqueci minha senha</p>
                     </div>
                 </div>
