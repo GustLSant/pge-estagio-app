@@ -4,6 +4,7 @@ import './Button.css'
 
 type ButtonProps = {
     label: string,
+    onClick: () => void,
     variant?: 'solid' | 'outlined',
     colorVariant?: 'light' | 'dark',
     grow?: boolean,
@@ -18,8 +19,11 @@ type ButtonProps = {
     disabled?: boolean,
 }
 
+const defaultOnClickFunc = () => {};
+
 const defaultProps:ButtonProps = {
     label: 'label',
+    onClick: defaultOnClickFunc,
     variant: 'solid',
     colorVariant: 'dark',
     grow: false,
@@ -54,7 +58,7 @@ export default function Button(_props:ButtonProps){
 
 
     return(
-        <button className={fullClass} style={style}>
+        <button className={fullClass} style={style} onClick={props.onClick}>
             {
                 props.loading
                 ?
