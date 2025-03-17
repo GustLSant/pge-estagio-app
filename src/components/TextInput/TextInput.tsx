@@ -11,7 +11,7 @@ type TextInputProps = {
     disabled?: boolean,
 }
 
-const defaultOnChangeFunc = (e: React.ChangeEvent<HTMLInputElement>)=>{}
+const defaultOnChangeFunc = (_e: React.ChangeEvent<HTMLInputElement>)=>{}
 
 const defaultProps:TextInputProps = {
     value: '',

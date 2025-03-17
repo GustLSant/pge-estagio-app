@@ -27,14 +27,14 @@ function saveDefaultDatabaseOnSessionStorage(){
 
 
 /* GETTERS */
-export function tryLogin(_email: string, _password: string): ResponseType{
+export function tryLogin(email: string, password: string): ResponseType{
     const sessionData: string | null = sessionStorage.getItem('accountCredentials');
     
     if(sessionData){
         const accountCredentials: AccountCredentialType[] = JSON.parse(sessionData);
-        const foundAccount: AccountCredentialType | undefined = accountCredentials.find((element)=>{return (element.email === _email)});
+        const foundAccount: AccountCredentialType | undefined = accountCredentials.find((element)=>{return (element.email === email)});
         if(foundAccount){
-            if(foundAccount.password === _password){
+            if(foundAccount.password === password){
                 return {
                     status: 200,
                     message: 'Login bem sucedido.',
