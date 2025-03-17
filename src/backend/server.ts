@@ -1,4 +1,4 @@
-import { AccountCredentialType, UserType } from './database';
+import { AccountCredentialType } from './database';
 import { defaultDatabase } from './database'
 
 export type ResponseType = {
