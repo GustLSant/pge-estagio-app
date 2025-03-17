@@ -66,12 +66,12 @@ export default function LoginPage(){
 
             await simulateNetworkDelay();
             tryLogin(email, password)
-            .then((response)=>{
+            .then((response:Response)=>{
                 if(response.status === 200){
                     navigate('/cliente/lista-processos')
                 }
             })
-            .catch((error)=>{
+            .catch((error:Response)=>{
                 setIsLoading(false);
 
                 if(error.status === 401){
