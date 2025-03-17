@@ -1,5 +1,4 @@
-import { AccountCredentialType } from './database';
-import { defaultDatabase } from './database'
+import { defaultDatabase, AccountCredentialType } from './database';
 
 export type ResponseType = {
     status: 200 | 201 | 401 | 404 | 500,
@@ -13,7 +12,7 @@ export function simulateNetworkDelay(): Promise<void> {
 }
 
 
-export function initializeDatabase(){    
+export function initializeDatabase(){
     if(sessionStorage.getItem('accountCredentials') === null){
         saveDefaultDatabaseOnSessionStorage();
     }
@@ -26,7 +25,6 @@ function saveDefaultDatabaseOnSessionStorage(){
 }
 
 
-/* GETTERS */
 export function tryLogin(email: string, password: string): ResponseType{
     const sessionData: string | null = sessionStorage.getItem('accountCredentials');
     
