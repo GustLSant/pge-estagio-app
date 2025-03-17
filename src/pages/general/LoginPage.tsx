@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from "react-router";
+import { tryLogin, ResponseType, simulateNetworkDelay } from '../../backend/server';
 import TextInput from '../../components/TextInput/TextInput';
 import Button from '../../components/Button/Button'
 import { BiLogIn } from "react-icons/bi";
@@ -36,6 +37,7 @@ export default function LoginPage(){
         setPassword(e.target.value);
     }
 
+
     async function onClickLoginButton(){
         const currentError:LoginError = {...defaultLoginError};
 
@@ -57,21 +59,29 @@ export default function LoginPage(){
         }
         
         setErrors({...currentError});
+
+        // se nao teve nenhum erro de input, tenta fazer o login
         if(!currentError.emailError && !currentError.passwordError){
             setIsLoading(true);
-            setTimeout(()=>{
-                    setIsLoading(false);
-                    if(Math.random() <= 0.5){
-                        currentError.emailError = true;
-                        currentError.emailHelperText = 'Credenciais incorretas';
-                        currentError.passwordError = true;
-                        currentError.passwordHelperText = 'Credenciais incorretas';
-                        setErrors({...currentError});
-                    }
-                    else{
-                        navigate('/cliente/lista-processos')
-                    }
-            }, 1000);
+
+            await simulateNetworkDelay();
+            const response: ResponseType = tryLogin(email, password)
+
+            if(response.status === 200){
+                navigate('/cliente/lista-processos')
+            }
+            else{
+                setIsLoading(false);
+
+                if(response.status === 401){
+                    currentError.emailError = true;
+                    currentError.emailHelperText = 'Credenciais incorretas';
+                    currentError.passwordError = true;
+                    currentError.passwordHelperText = 'Credenciais incorretas';
+                    setErrors({...currentError});
+                }
+                else{ console.error(response) }
+            }
         }
     }
 
