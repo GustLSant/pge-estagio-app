@@ -33,6 +33,7 @@ export default function TextInput(_props:TextInputProps){
     const disabledClass = (props.disabled) ? 'disabled' : '';
     const fullClass = 'text-input ' + errorClass + ' ' + disabledClass
 
+    
     return(
         <div className={fullClass} style={{fontSize: props.fontSize}}>
             <p className='text-input__label'>{props.label}:</p>

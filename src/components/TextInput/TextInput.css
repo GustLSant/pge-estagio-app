@@ -51,6 +51,7 @@
 .text-input.disabled{
     color: var(--darkergray);
     opacity: 80%;
+    pointer-events: none;
 
     input{
         border: 1px solid var(--darkergray);
