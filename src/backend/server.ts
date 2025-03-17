@@ -1,5 +1,5 @@
 import { defaultDatabase } from './database';
-import { AccountCredentials } from '../types';
+import { AccountCredentials, User } from '../types';
 
 export type Response = {
     status: 200 | 201 | 401 | 404 | 500,
@@ -36,11 +36,22 @@ export function tryLogin(email: string, password: string): Promise<Response>{
             
             if(foundAccount){
                 if(foundAccount.password === password){
-                    resolve({
-                        status: 200,
-                        message: 'Login bem sucedido.',
-                        data: '',
-                    });
+                    const userData: User | undefined = getUserDataFromAccountCredentials(foundAccount);
+                    if(userData){
+                        resolve({
+                            status: 200,
+                            message: 'Login bem sucedido.',
+                            data: userData,
+                        });
+                    }
+                    else{
+                        console.error('User related to these credentials was not found on sessionStorage.')
+                        reject({
+                            status: 404,
+                            message: 'Usuário com o id fornecido não foi encontrado.',
+                            data: '',
+                        });
+                    }
                 }
                 else{
                     reject({
@@ -67,4 +78,17 @@ export function tryLogin(email: string, password: string): Promise<Response>{
             });
         }
     })
+}
+
+
+function getUserDataFromAccountCredentials(credentials: AccountCredentials){
+    const sessionData: string | null = sessionStorage.getItem('users');
+    
+    if(sessionData){
+        const users: User[] = JSON.parse(sessionData);
+        const foundUser: User | undefined = users.find((element)=>{return (element.id === credentials.id)});
+        if(foundUser){ return foundUser; }
+        else{ return undefined }
+    }
+    else{ return undefined }
 }
