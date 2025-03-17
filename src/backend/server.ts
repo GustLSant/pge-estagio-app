@@ -9,7 +9,7 @@ export type Response = {
 
 
 export function simulateNetworkDelay(): Promise<void> {
-    return new Promise(resolve => setTimeout(resolve, Math.random()*1500));
+    return new Promise((resolve) => setTimeout(resolve, Math.random()*1000+500));
 }
 
 
@@ -26,42 +26,45 @@ function saveDefaultDatabaseOnSessionStorage(){
 }
 
 
-export function tryLogin(email: string, password: string): Response{
-    const sessionData: string | null = sessionStorage.getItem('accountCredentials');
-    
-    if(sessionData){
-        const accountCredentials: AccountCredentials[] = JSON.parse(sessionData);
-        const foundAccount: AccountCredentials | undefined = accountCredentials.find((element)=>{return (element.email === email)});
-        if(foundAccount){
-            if(foundAccount.password === password){
-                return {
-                    status: 200,
-                    message: 'Login bem sucedido.',
-                    data: '',
+export function tryLogin(email: string, password: string): Promise<Response>{
+    return new Promise((resolve, reject)=>{
+        const sessionData: string | null = sessionStorage.getItem('accountCredentials');
+        
+        if(sessionData){
+            const accountCredentials: AccountCredentials[] = JSON.parse(sessionData);
+            const foundAccount: AccountCredentials | undefined = accountCredentials.find((element)=>{return (element.email === email)});
+            
+            if(foundAccount){
+                if(foundAccount.password === password){
+                    resolve({
+                        status: 200,
+                        message: 'Login bem sucedido.',
+                        data: '',
+                    });
+                }
+                else{
+                    reject({
+                        status: 401,
+                        message: 'Credenciais não encontradas.',
+                        data: '',
+                    });
                 }
             }
             else{
-                return {
+                reject({
                     status: 401,
                     message: 'Credenciais não encontradas.',
                     data: '',
-                };
+                });
             }
         }
         else{
-            return {
-                status: 401,
-                message: 'Credenciais não encontradas.',
+            console.error('AccountCredentials not found on sessionStorage.')
+            reject({
+                status: 404,
+                message: 'Banco de dados não encontrado.',
                 data: '',
-            };
+            });
         }
-    }
-    else{
-        console.error('AccountCredentials not found on sessionStorage.')
-        return {
-            status: 404,
-            message: 'O banco de dados não foi encontrado.',
-            data: '',
-        };
-    }
+    })
 }

@@ -12,8 +12,8 @@ export const defaultDatabase:Database = {
     accountCredentials: [
         {
             id: 0,
-            email: 'josericardo@gmail.com',
-            password: 'josericardosenha',
+            email: 'jr',
+            password: 'jrsenha',
         },
         {
             id: 1,

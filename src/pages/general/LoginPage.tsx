@@ -65,23 +65,26 @@ export default function LoginPage(){
             setIsLoading(true);
 
             await simulateNetworkDelay();
-            const response: Response = tryLogin(email, password)
-
-            if(response.status === 200){
-                navigate('/cliente/lista-processos')
-            }
-            else{
+            tryLogin(email, password)
+            .then((response)=>{
+                if(response.status === 200){
+                    navigate('/cliente/lista-processos')
+                }
+            })
+            .catch((error)=>{
                 setIsLoading(false);
 
-                if(response.status === 401){
+                if(error.status === 401){
                     currentError.emailError = true;
                     currentError.emailHelperText = 'Credenciais incorretas';
                     currentError.passwordError = true;
                     currentError.passwordHelperText = 'Credenciais incorretas';
                     setErrors({...currentError});
                 }
-                else{ console.error(response) }
-            }
+                else{
+                    console.error(error)
+                }
+            })
         }
     }
 
