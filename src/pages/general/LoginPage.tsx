@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from "react-router";
-import { tryLogin, ResponseType, simulateNetworkDelay } from '../../backend/server';
+import { tryLogin, Response, simulateNetworkDelay } from '../../backend/server';
 import TextInput from '../../components/TextInput/TextInput';
 import Button from '../../components/Button/Button'
 import { BiLogIn } from "react-icons/bi";
@@ -65,7 +65,7 @@ export default function LoginPage(){
             setIsLoading(true);
 
             await simulateNetworkDelay();
-            const response: ResponseType = tryLogin(email, password)
+            const response: Response = tryLogin(email, password)
 
             if(response.status === 200){
                 navigate('/cliente/lista-processos')
