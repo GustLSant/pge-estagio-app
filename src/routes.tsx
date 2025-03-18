@@ -1,14 +1,13 @@
 import { Navigate } from 'react-router'
 
+import AppLayout from './pages/general/AppLayout.tsx'
 import LoginPage from './pages/general/LoginPage.tsx'
 import ErrorPage from './pages/general/ErrorPage.tsx'
 import AccountSettingsPage from './pages/general/AccountSettingsPage.tsx'
 
-import ClientContainerPage from './pages/client/ClientContainerPage.tsx'
 import ClientProcessListPage from './pages/client/ClientProcessListPage.tsx'
 import ClientProcessViewerPage from './pages/client/ClientProcessViewerPage.tsx'
 
-import AttorneyContainerPage from './pages/attorney/AttorneyContainerPage.tsx'
 import AttorneyProcessListPage from './pages/attorney/AttorneyProcessListPage.tsx'
 import AttorneyProcessViewerPage from './pages/attorney/AttorneyProcessViewerPage.tsx'
 import AttorneyProcessCreationPage from './pages/attorney/AttorneyProcessCreationPage.tsx'
@@ -35,7 +34,7 @@ const routes = [
     children:[
       {
         path: '/cliente',
-        element: <ClientContainerPage />,
+        element: <AppLayout />,
         children: [
           {
             index: true,
@@ -62,7 +61,7 @@ const routes = [
     children:[
       {
         path: '/procurador',
-        element: <AttorneyContainerPage />,
+        element: <AppLayout />,
         children: [
           {
             index: true,
