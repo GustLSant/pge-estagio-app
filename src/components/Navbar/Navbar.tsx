@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from 'react'
+import { useState, useContext, useEffect, useRef } from 'react'
 import { AuthContext } from '../../contexts/AuthContext'
 import { useNavigate, useLocation } from 'react-router';
 import { BiFile } from "react-icons/bi";
@@ -14,6 +14,7 @@ export default function Navbar(){
     const [state, setState] = useState<NavbarState>('initialOpen');
     const authContext = useContext(AuthContext);
     const currentUrl = useLocation().pathname;
+    const navbarRef = useRef<HTMLDivElement>(null);
     const navigate = useNavigate();
 
 
@@ -31,9 +32,24 @@ export default function Navbar(){
         if(state === 'initialOpen' || state === 'open'){ setState('closed'); }
     }
 
+    function handleClickOutsideNavbar(event: MouseEvent){
+        if (navbarRef.current && !navbarRef.current.contains(event.target as Node)) {
+          if(state === 'initialOpen'){ setState('closed'); }
+        }
+    };
+
+
+    useEffect(() => {
+        document.addEventListener('click', handleClickOutsideNavbar);
+        
+        return () => {
+          document.removeEventListener('click', handleClickOutsideNavbar);
+        };
+    }, []);
+
 
     return(
-        <div className={`navbar ${(state === 'initialOpen' || state === 'open') ? 'active' : 'disabled'}`} onClick={handleClick} onMouseLeave={handleMouseLeave}>
+        <div className={`navbar ${(state === 'initialOpen' || state === 'open') ? 'active' : 'disabled'}`} ref={navbarRef} onClick={handleClick} onMouseLeave={handleMouseLeave}>
             <div className='navbar-wrapper'>
                 <section className='navbar__disabled-container'>
                     <img className='navbar__disabled-logo' src="/logo-alt-transp-small.png" alt="Logo PGE-SE" />
