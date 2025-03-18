@@ -1,10 +1,73 @@
-.navbar{
+.navbar-wrapper{
+    width: 205px;
+    height: 100%;
+    position: relative; /* para o posicionamento da logo que aparece quando a navbar está fechada */
     display: flex;
     flex-direction: column;
     gap: 15px;
     padding: 15px;
-    background-color: var(--lightgray);
 }
+
+.navbar{
+    background-color: var(--lightgray);
+    box-shadow: -4px 0px 4px rgba(0,0,0, 0.15) inset;
+    overflow: hidden; /* para nao comprimir o wrapper e estragar a animacao */
+
+    transition: width 0.15s;
+
+    &.active{
+        width: 205px;
+        flex-shrink: 0;
+
+        .navbar__disabled-container{
+            opacity: 0%;
+        }
+    }
+
+    &.disabled{
+        width: calc(15px + 42px + 15px);
+    }
+    &.disabled:hover{
+        cursor: pointer;
+    }
+
+    &.disabled .navbar__header-container img,
+    &.disabled .navbar__header-container div,
+    &.disabled .navbar__options-container,
+    &.disabled .navbar__spacer,
+    &.disabled .navbar__footer{
+        opacity: 0%;
+        pointer-events: none;
+    }
+}
+
+/* para o efeito de abrir e fechar da navbar (as logos nao possuem transition pq nao sao totalmente opacas, ai seus alphas se somam e criam um efeito estranho) */
+.navbar__disabled-container svg,
+.navbar__header-container div,
+.navbar__options-container,
+.navbar__spacer,
+.navbar__footer{
+    transition: opacity 0.15s; 
+}
+
+.navbar__disabled-container{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    
+    .navbar__disabled-logo{
+        width: 42px; /* a imagem é 70x100 */
+        height: 60px;
+    }
+
+    svg{
+        font-size: 1.5em;
+        opacity: 75%;
+    }
+}
+
 
 .navbar__spacer{
     align-self: stretch;
@@ -17,6 +80,7 @@
     justify-content: flex-start;
     align-items: center;
     gap: 5px;
+    min-width: 175px; /* para o efeito de abrir e fechar da navbar ficar suave, sem isso o texto vai ser comprimir e aumentar a height da div pai, abaixando a imagem da logo */
 
     img{
         width: 42px; /* a imagem é 70x100 */
@@ -72,13 +136,7 @@
     
 }
 
-.navbar__foorter-container{
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-.navbar__foorter{
+.navbar__footer{
     display: flex;
     justify-content: flex-start;
     align-items: center;
