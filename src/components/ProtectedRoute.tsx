@@ -11,22 +11,17 @@ type ProtectedRouteProps = {
 export default function ProtectedRoute({ allowedRoles }: ProtectedRouteProps){
   const authContext: AuthContextType | undefined = useContext(AuthContext);
 
-  // usuario nao está logado
-  if(!authContext){
-    console.error('AuthContext is undefined: ', authContext);
-    console.log('Redirecting user to login page...')
-    return <Navigate to="/" replace />;
-  }
-
-  if(authContext.user){
+  if(authContext?.user){
     if(!allowedRoles.includes(authContext.user.role)){ // usuario nao tem permissao para acessar essa pagina
-        console.error('User does not have permission to access this route.');
-        return <Navigate to="/minha-conta" replace />;
+        console.error('O usuário não tem permissão para acessar essa rota.');
+        console.log('Redirecionando para a página inicial...')
+        if(authContext.user.role === 'client'){ return <Navigate to='/cliente/lista-processos' replace />; }
+        else{ return <Navigate to='/procurador/lista-processos' replace />; }
     }
   }
   else{
-    console.error('User from AuthContext is undefined: ', authContext);
-    console.log('Redirecting user to login page...')
+    console.error('A sessão do usuário não foi encontrada: ', authContext);
+    console.log('Redirecionando para a página de login...');
     return <Navigate to="/" replace />;
   }
 
