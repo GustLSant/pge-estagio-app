@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useNavigate } from "react-router";
 import { tryLogin, Response, simulateNetworkDelay } from '../../backend/server';
+import { AuthContext, AuthContextType } from '../../contexts/AuthContext';
 import TextInput from '../../components/TextInput/TextInput';
-import Button from '../../components/Button/Button'
+import Button from '../../components/Button/Button';
 import { BiLogIn } from "react-icons/bi";
-import './LoginPage.css'
+import './LoginPage.css';
 
 type LoginError = {
     emailError: boolean,
@@ -26,6 +27,7 @@ export default function LoginPage(){
     const [password, setPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [errors, setErrors] = useState<LoginError>({...defaultLoginError});
+    const authContext: AuthContextType | undefined = useContext(AuthContext);
     const navigate  = useNavigate();
     
 
@@ -66,9 +68,12 @@ export default function LoginPage(){
 
             await simulateNetworkDelay();
             tryLogin(email, password)
-            .then((response:Response)=>{
-                if(response.status === 200){
-                    navigate('/cliente/lista-processos')
+            .then((response: Response)=>{
+                sessionStorage.setItem('currentUser', JSON.stringify(response.data)); /* guardando os dados para o caso de refresh na pagina ou alteracao manual da url */
+                if(authContext?.setUser){
+                    authContext.setUser({...response.data});
+                    if(response.data.role === 'client'){ navigate('/cliente/lista-processos'); }
+                    else{ navigate('/procurador/lista-processos'); }
                 }
             })
             .catch((error:Response)=>{

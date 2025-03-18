@@ -12,6 +12,7 @@ import AttorneyContainerPage from './pages/attorney/AttorneyContainerPage.tsx'
 import AttorneyProcessListPage from './pages/attorney/AttorneyProcessListPage.tsx'
 import AttorneyProcessViewerPage from './pages/attorney/AttorneyProcessViewerPage.tsx'
 import AttorneyProcessCreationPage from './pages/attorney/AttorneyProcessCreationPage.tsx'
+import ProtectedRoute from './components/ProtectedRoute.tsx'
 
 
 const routes = [
@@ -21,57 +22,72 @@ const routes = [
     errorElement: <ErrorPage />
   },
   {
-    path: '/minha-conta',
-    element: <AccountSettingsPage />,
-  },
-  {
-    path: '/cliente',
-    element: <ClientContainerPage />,
+    element: <ProtectedRoute allowedRoles={['client', 'attorney']} />, /* PAGINAS ACESSIVEIS SOMENTE POR USUARIOS LOGADOS */
     children: [
       {
-        index: true,
-        element: <Navigate to="/cliente/lista-processos" replace />
-      },
-      {
-        path: '/cliente/lista-processos',
-        element: <ClientProcessListPage />
-      },
-      {
-        path: '/cliente/visualizar-processo',
-        element: <Navigate to="/cliente/lista-processos" replace /> /* sem o id deve retornar para a pagina de listagem */
-      },
-      {
-        path: '/cliente/visualizar-processo/:id',
-        element: <ClientProcessViewerPage />
+        path: '/minha-conta',
+        element: <AccountSettingsPage />,
       },
     ]
   },
   {
-    path: '/procurador',
-    element: <AttorneyContainerPage />,
-    children: [
+    element: <ProtectedRoute allowedRoles={['client']} />, /* PAGINAS ACESSIVEIS SOMENTE POR CLIENTES */
+    children:[
       {
-        index: true,
-        element: <Navigate to="/procurador/lista-processos" replace />
-      },
-      {
-        path: '/procurador/lista-processos',
-        element: <AttorneyProcessListPage />
-      },
-      {
-        path: '/procurador/visualizar-processo',
-        element: <Navigate to="/procurador/lista-processos" replace /> /* sem o id deve retornar para a pagina de listagem */
-      },
-      {
-        path: '/procurador/visualizar-processo/:id',
-        element: <AttorneyProcessViewerPage />
-      },
-      {
-        path: '/procurador/criar-processo',
-        element: <AttorneyProcessCreationPage />
+        path: '/cliente',
+        element: <ClientContainerPage />,
+        children: [
+          {
+            index: true,
+            element: <Navigate to="/cliente/lista-processos" replace />
+          },
+          {
+            path: '/cliente/lista-processos',
+            element: <ClientProcessListPage />
+          },
+          {
+            path: '/cliente/visualizar-processo',
+            element: <Navigate to="/cliente/lista-processos" replace /> /* sem o id deve retornar para a pagina de listagem */
+          },
+          {
+            path: '/cliente/visualizar-processo/:id',
+            element: <ClientProcessViewerPage />
+          },
+        ]
       },
     ]
   },
+  {
+    element: <ProtectedRoute allowedRoles={['attorney']} />, /* PAGINAS ACESSIVEIS SOMENTE POR PROCURADORES */
+    children:[
+      {
+        path: '/procurador',
+        element: <AttorneyContainerPage />,
+        children: [
+          {
+            index: true,
+            element: <Navigate to="/procurador/lista-processos" replace />
+          },
+          {
+            path: '/procurador/lista-processos',
+            element: <AttorneyProcessListPage />
+          },
+          {
+            path: '/procurador/visualizar-processo',
+            element: <Navigate to="/procurador/lista-processos" replace /> /* sem o id deve retornar para a pagina de listagem */
+          },
+          {
+            path: '/procurador/visualizar-processo/:id',
+            element: <AttorneyProcessViewerPage />
+          },
+          {
+            path: '/procurador/criar-processo',
+            element: <AttorneyProcessCreationPage />
+          },
+        ]
+      },
+    ]
+  }
 ]
 
 export default routes;
