@@ -49,7 +49,7 @@ export function tryLogin(email: string, password: string): Promise<Response>{
                         reject({
                             status: 404,
                             message: 'Usuário com o id fornecido não foi encontrado.',
-                            data: '',
+                            data: null,
                         });
                     }
                 }
@@ -57,7 +57,7 @@ export function tryLogin(email: string, password: string): Promise<Response>{
                     reject({
                         status: 401,
                         message: 'Credenciais não encontradas.',
-                        data: '',
+                        data: null,
                     });
                 }
             }
@@ -65,7 +65,7 @@ export function tryLogin(email: string, password: string): Promise<Response>{
                 reject({
                     status: 401,
                     message: 'Credenciais não encontradas.',
-                    data: '',
+                    data: null,
                 });
             }
         }
@@ -74,7 +74,7 @@ export function tryLogin(email: string, password: string): Promise<Response>{
             reject({
                 status: 404,
                 message: 'Banco de dados não encontrado.',
-                data: '',
+                data: null,
             });
         }
     })
