@@ -21,7 +21,7 @@
 
     .text-input__label{
         font-size: 0.9em;
-        opacity: 50%;
+        opacity: 75%;
         user-select: none;
     }
 
@@ -50,7 +50,7 @@
 
 .text-input.disabled{
     color: var(--darkergray);
-    opacity: 80%;
+    opacity: 75%;
     pointer-events: none;
 
     input{
