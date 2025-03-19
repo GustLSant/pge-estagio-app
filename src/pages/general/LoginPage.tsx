@@ -1,6 +1,7 @@
 import { useState, useContext } from 'react';
 import { useNavigate } from "react-router";
-import { tryLogin, Response, simulateNetworkDelay } from '../../backend/server';
+import { tryLogin, simulateNetworkDelay } from '../../backend/server';
+import { Response } from '../../types';
 import { AuthContext, AuthContextType } from '../../contexts/AuthContext';
 import TextInput from '../../components/TextInput/TextInput';
 import Button from '../../components/Button/Button';
