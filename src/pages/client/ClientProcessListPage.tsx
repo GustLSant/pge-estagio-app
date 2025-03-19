@@ -39,7 +39,9 @@ export default function ClientProcessListPage(){
     }
 
     function handleChangeSearchString(e: React.ChangeEvent<HTMLInputElement>): void{
-        setSearchString(e.target.value);
+        if(!/[a-zA-Z]/.test(e.target.value)){
+            setSearchString(e.target.value);
+        }
     }
 
 
