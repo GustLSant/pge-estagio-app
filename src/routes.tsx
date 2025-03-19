@@ -25,7 +25,13 @@ const routes = [
     children: [
       {
         path: '/minha-conta',
-        element: <AccountSettingsPage />,
+        element: <AppLayout />,
+        children:[
+          {
+            path: '/minha-conta',
+            element: <AccountSettingsPage />,
+          }
+        ]
       },
     ]
   },
