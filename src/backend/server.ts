@@ -76,6 +76,22 @@ export function tryLogin(email: string, password: string): Promise<Response>{
 }
 
 
+export function getUserDataFromSessionStorage(): User | undefined{
+    const sessionData: string | null = sessionStorage.getItem('currentUser');
+    
+    if(sessionData){
+        const userFromSessionStorage: User | undefined = JSON.parse(sessionData);
+
+        if(userFromSessionStorage){
+            userFromSessionStorage.registerDate = new Date(userFromSessionStorage.registerDate); /* convertendo a string de volta para Date */
+            return userFromSessionStorage;
+        }
+    }
+
+    return undefined;
+}
+
+
 function getUserDataFromAccountCredentials(credentials: AccountCredentials){
     const sessionData: string | null = sessionStorage.getItem('users');
     
