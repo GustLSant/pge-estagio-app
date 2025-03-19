@@ -1,0 +1,147 @@
+.client-process-list-page{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.process-list-page__header{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+    
+    svg{
+        flex-shrink: 0;
+        font-size: 2.5em;
+    }
+
+    h2{
+        font-size: 1.75em;
+    }
+}
+
+.process-list-page__container-settings{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9em;
+
+    @media (max-width: 550px) {
+        &{
+            flex-wrap: wrap; /* so ativa nessa resolucao pq primeiro tem que acontecer o wrap dos botoes de filtros */
+        }
+    }
+    
+    .process-list-page-settings__container-filters{
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+
+        .process-list-page__filter-option{
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px;
+            border: 1px solid var(--darkgray);
+            border-radius: 5px;
+            font-weight: 300;
+            user-select: none;
+
+            p:nth-child(2){ /* numero de processos */
+                background-color: var(--darkgray);
+                padding: 2px 8px;
+                border-radius: 3px;
+            }
+
+            &.active{
+                border-color: var(--darkblue);
+                font-weight: 400;
+
+                p:nth-child(2){
+                    background-color: var(--darkblue);
+                    color: white;
+                }
+            }
+
+            &:hover{
+                cursor: pointer;
+            }
+        }
+    }
+    
+    .process-list-page-settings__sort-button{
+        display: flex;
+        min-height: 33px; /* para ficar do mesmo tamanho das opcoes de filtros */
+        flex-shrink: 0;
+        align-items: center;
+        gap: 5px;
+        padding: 5px;
+        border: 1px solid var(--darkgray);
+        border-radius: 5px;
+        user-select: none;
+
+        /* em resolucoes menores não dá pra manter o botao todo numa linha só */
+        @media (max-width: 360px) {
+            &{
+                flex-shrink: 1;
+            }
+        }
+
+        svg{
+            flex-shrink: 0;
+            font-size: 1.25em;
+        }
+
+        &.active{
+            border-color: var(--darkblue);
+            background-color: var(--darkblue);
+            color: white;
+            font-weight: 400;
+        }
+
+        &:hover{
+            cursor: pointer;
+        }
+    }
+}
+
+.process-list-page__table-section{
+    display: flex;
+    overflow: auto;
+    font-weight: 300;
+    font-size: 0.9em;
+
+    .process-list-page__table{
+        flex-grow: 1;
+        border-collapse: collapse;
+        width: 2000px;
+    
+        th{
+            text-align: left;
+            font-weight: 500;
+        }
+    
+        th, td{
+            padding: 10px 5px;
+        }
+    
+        tr{
+            border-bottom: 1px solid var(--darkgray);
+        }
+    
+        tbody tr:hover{
+            background-color: var(--lightgray);
+            cursor: pointer;
+        }
+    }
+
+    /* mensagem de array vazio e de erro na requisicao */
+    & > p{
+        padding-top: 15px;
+        flex-grow: 1;
+        text-align: center;
+    }
+}
