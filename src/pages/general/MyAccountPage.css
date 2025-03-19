@@ -1,0 +1,41 @@
+.my-account-page__infos-container{
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    font-size: 0.9em;
+    
+    .my-account-page__info{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        font-weight: 300;
+
+        p:nth-child(2){
+            text-align: right;
+            flex-grow: 1;
+            word-break: break-all;
+        }
+    }
+
+    .separator{
+        background-color: var(--darkgray);
+        height: 1px;
+    }
+}
+
+.my-account-page__buttons-container{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.my-acount-page__inputs-password-container{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.my-acount-page__modal-button-password-container{
+    display: flex;
+    justify-content: center;
+}
