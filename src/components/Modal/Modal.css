@@ -1,0 +1,49 @@
+.modal{
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100vw;
+    height: 100vh;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0, 0.5);
+    backdrop-filter: blur(2px);
+    z-index: 99;
+}
+
+.modal__content-container{
+    position: relative; /* para o posicionamento do botao de fechar o modal */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+    background-color: var(--background);
+    border-radius: 5px;
+    width: min(500px, 100%);
+
+    .modal__close-button{
+        font-size: 2.0em;
+        opacity: 80%;
+        position: absolute;
+        top: 5px;
+        right: 5px;
+
+        &:hover{
+            opacity: 100%;
+            cursor: pointer;
+        }
+    }
+
+    h3{
+        font-size: 1.5em;
+        font-weight: 400;
+    }
+}
+
+.modal__exit-area{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
