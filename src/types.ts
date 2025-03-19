@@ -1,5 +1,13 @@
 export type UserRole = 'client' | 'attorney';
 
+export type ProcessStatus = 'filled' | 'pending' | 'ruled' | 'suspended'; // autuado, em andamento, julgado, suspenso
+
+export type Response = {
+    status: 200 | 201 | 401 | 404 | 500,
+    message: string,
+    data: any,
+}
+
 export type AccountCredentials = {
     id: number,                /* mesmo ID do User */
     email: string,
@@ -20,6 +28,7 @@ export type User = {
 export type Process = {
     id: number,
     number: string,
+    status: ProcessStatus,
     attorneyId: number,
     clientId: number,
     place: string,
