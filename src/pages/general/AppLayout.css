@@ -1,12 +1,19 @@
 .app-layout{
     height: 100vh;
+    width: 100vw;
     display: flex;
     align-items: stretch;
+    overflow: hidden;
 
     .app-layout__content-container{
-        padding: 15px;
         flex-grow: 1;
-        overflow: auto;
+        padding: 15px;
         background-color: var(--background);
+        
+        overflow: hidden; /* impede essa div de se expandir quando o conteudo da div filha for muito grande */
+        & > div{
+            width: 100%;
+            height: 100%;
+        }
     }
 }
