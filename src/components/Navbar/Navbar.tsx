@@ -19,7 +19,12 @@ export default function Navbar(){
 
 
     function handleOptionClick(option: 'process' | 'conta'){
-        if(option === 'process'){ navigate('/cliente/lista-processos'); }
+        if(option === 'process'){
+            if(authContext?.user?.role){
+                if(authContext.user.role === 'client'){ navigate('/cliente/lista-processos'); }
+                else{ navigate('/procurador/lista-processos'); }
+            }
+        }
         else{ navigate('/minha-conta'); }
     }
 
