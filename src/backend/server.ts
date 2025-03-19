@@ -32,6 +32,7 @@ export function tryLogin(email: string, password: string): Promise<Response>{
                 if(foundAccount.password === password){
                     const userData: User | undefined = getUserDataFromAccountCredentials(foundAccount);
                     if(userData){
+                        userData.registerDate = new Date(userData.registerDate); /* convertendo a string de volta para Date */
                         resolve({
                             status: 200,
                             message: 'Login bem sucedido.',

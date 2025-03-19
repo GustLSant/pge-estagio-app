@@ -15,6 +15,9 @@ const sessionData: string | null = sessionStorage.getItem('currentUser');
 let userFromSessionStorage: User | undefined;
 if(sessionData){
     userFromSessionStorage = JSON.parse(sessionData);
+    if(userFromSessionStorage){
+        userFromSessionStorage.registerDate = new Date(userFromSessionStorage.registerDate); /* convertendo a string de volta para Date */
+    }
 }
 
 
