@@ -92,6 +92,51 @@ export function getUserDataFromSessionStorage(): User | undefined{
 }
 
 
+export function tryChangePassword(user: User, currentPassword: string, newPassword: string): Promise<Response>{
+    return new Promise<Response>((resolve, reject)=>{
+        const sessionData: string | null = sessionStorage.getItem('accountCredentials');
+    
+        if(sessionData){
+            const accountCredentials: AccountCredentials[] = JSON.parse(sessionData);
+            const foundAccount: AccountCredentials | undefined = accountCredentials.find((element: AccountCredentials)=>{return (element.id === user.id)});
+            if(foundAccount){
+                if(foundAccount.password === currentPassword){
+                    foundAccount.password = newPassword; /* ja altera o objeto dentro do array */
+                    console.log('array de dados de contas alterado: ', accountCredentials);
+                    sessionStorage.setItem('accountCredentials', JSON.stringify(accountCredentials));
+                    resolve({
+                        status: 201,
+                        message: 'Senha alterada com sucesso.',
+                        data: null,
+                    })
+                }
+                else{
+                    reject({
+                        status: 401,
+                        message: 'A senha informada não está correta.',
+                        data: null,
+                    })
+                }
+            }
+            else{
+                reject({
+                    status: 404,
+                    message: 'Credenciais não encontradas no banco de dados.',
+                    data: null,
+                })
+            }
+        }
+        else{
+            reject({
+                status: 404,
+                message: 'Banco de dados não encontrado.',
+                data: null,
+            })
+        }
+    })
+}
+
+
 function getUserDataFromAccountCredentials(credentials: AccountCredentials){
     const sessionData: string | null = sessionStorage.getItem('users');
     
@@ -106,7 +151,7 @@ function getUserDataFromAccountCredentials(credentials: AccountCredentials){
 
 
 export function getProcessListByUserId(userId:number): Promise<Response>{
-    return new Promise((resolve, reject)=>{
+    return new Promise<Response>((resolve, reject)=>{
         const sessionData: string | null = sessionStorage.getItem('process');
         
         if(sessionData){
