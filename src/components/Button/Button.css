@@ -50,19 +50,3 @@
         opacity: 50%;
     }
 }
-
-.button__loading-icon{
-    animation-name: loading;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-}
-
-@keyframes loading {
-    0%{
-        transform: rotate(0deg);
-    }
-    100%{
-        transform: rotate(360deg);
-    }
-}

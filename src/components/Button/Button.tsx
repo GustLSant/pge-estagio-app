@@ -62,7 +62,7 @@ export default function Button(_props:ButtonProps){
             {
                 props.loading
                 ?
-                <BiLoaderAlt className='button__loading-icon' style={{fontSize: props.iconSize}} />
+                <BiLoaderAlt className='rotating-element' style={{fontSize: props.iconSize}} />
                 :
                 <>
                     {props.leftIcon && <props.leftIcon style={{fontSize: props.iconSize}} />}
