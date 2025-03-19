@@ -41,3 +41,19 @@ a:visited{
 .shadow-01{
   box-shadow: 4px 4px 4px rgba(0,0,0, 0.15);
 }
+
+.rotating-element{
+  animation-name: rotating;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes rotating {
+  0%{
+      transform: rotate(0deg);
+  }
+  100%{
+      transform: rotate(360deg);
+  }
+}
