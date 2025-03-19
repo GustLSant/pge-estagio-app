@@ -11,9 +11,32 @@
         background-color: var(--background);
         
         overflow: hidden; /* impede essa div de se expandir quando o conteudo da div filha for muito grande */
+        
+        /* é a div principal de cada página */
         & > div{
             width: 100%;
             height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+
+            /* é o cabeçalho de cada página */
+            header{
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 5px;
+                
+                svg{
+                    flex-shrink: 0;
+                    font-size: 2.5em;
+                }
+
+                h2{
+                    font-size: 1.75em;
+                }
+            }
         }
     }
 }

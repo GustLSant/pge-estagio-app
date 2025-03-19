@@ -3,7 +3,7 @@ import { Navigate } from 'react-router'
 import AppLayout from './pages/general/AppLayout.tsx'
 import LoginPage from './pages/general/LoginPage.tsx'
 import ErrorPage from './pages/general/ErrorPage.tsx'
-import AccountSettingsPage from './pages/general/AccountSettingsPage.tsx'
+import MyAccountPage from './pages/general/MyAccountPage.tsx'
 
 import ClientProcessListPage from './pages/client/ClientProcessListPage.tsx'
 import ClientProcessViewerPage from './pages/client/ClientProcessViewerPage.tsx'
@@ -29,7 +29,7 @@ const routes = [
         children:[
           {
             path: '/minha-conta',
-            element: <AccountSettingsPage />,
+            element: <MyAccountPage />,
           }
         ]
       },

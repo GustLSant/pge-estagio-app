@@ -126,10 +126,10 @@ export default function ClientProcessListPage(){
 
     return(
         <div className="client-process-list-page">
-            <section className="process-list-page__header">
+            <header className="process-list-page__header">
                 <BiFile />
                 <h2>Processos</h2>
-            </section>
+            </header>
             
             <section className="process-list-page__container-settings">
                 <div className="process-list-page-settings__container-filters">
