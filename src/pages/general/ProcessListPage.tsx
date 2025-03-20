@@ -121,7 +121,11 @@ export default function ProcessListPage(){
 
 
     function handleClickProcess(id: number): void{
-        navigate(`/cliente/visualizar-processo/${id}`);
+        if(authContext?.user){
+            if(authContext.user.role === 'client'){ navigate(`/cliente/visualizar-processo/${id}`); }
+            else{ navigate(`/procurador/visualizar-processo/${id}`); }
+        }
+        
     }
 
 
