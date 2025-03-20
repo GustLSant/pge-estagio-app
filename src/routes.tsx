@@ -2,7 +2,7 @@ import { Navigate } from 'react-router';
 
 import AppLayout from './pages/general/AppLayout.tsx';
 import LoginPage from './pages/general/LoginPage.tsx';
-import ErrorPage from './pages/general/ErrorPage.tsx';
+import ErrorPage from './pages/general/ErrorPage/ErrorPage.tsx';
 import MyAccountPage from './pages/general/MyAccountPage.tsx';
 
 import ProcessListPage from './pages/general/ProcessListPage.tsx';

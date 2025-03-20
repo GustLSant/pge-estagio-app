@@ -1,0 +1,29 @@
+.error-page{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+    background-image: url('/logo-alt-transp-branca-5.png'), var(--blue-gradient-01);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    & > div{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        background-color: white;
+        padding: 15px;
+        border-radius: 5px;
+
+        div{
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+    }
+}
