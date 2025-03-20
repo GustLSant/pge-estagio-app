@@ -26,11 +26,17 @@
     }
 
     /* CORES */
-    &.light{
+    &.solid.light{
         background-color: var(--lightblue);
     }
-    &.dark{
+    &.solid.dark{
         background-color: var(--lightblue);
+    }
+    &.outlined.light{
+        border: 1px solid var(--darkblue);
+    }
+    &.outlined.dark{
+        border: 1px solid var(--lightblue);
     }
 
     /* TAMANHO */
