@@ -70,10 +70,6 @@ export default function MyAccountPage(){
         else{
             setDifferentPasswords(true);
         }
-        // checa se a nova senha e a confirm nova senha sao iguais
-            // faz a requisicao que checa se a senha atual eh correta
-                // se for: o servidor faz a troca de senha e com o status 201 o modal eh fechado
-                // se nao for: marca o input da senha atual como erro
     }
 
 
