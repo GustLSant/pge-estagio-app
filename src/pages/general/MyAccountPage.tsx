@@ -108,12 +108,14 @@ export default function MyAccountPage(){
                     <section className="my-account-page__infos-container">
                         {
                             <>
+                            <div className="row-separator"></div>
+
                             <div className="my-account-page__info">
                                 <p>Nome completo:</p>
                                 <p>{userData.fullName}</p>
                             </div>
 
-                            <div className="separator"></div>
+                            <div className="row-separator"></div>
 
                             <div className="my-account-page__info">
                                 <p>CPF:</p>
@@ -123,7 +125,7 @@ export default function MyAccountPage(){
                             {
                                 (userData.oab) &&
                                 <>
-                                    <div className="separator"></div>
+                                    <div className="row-separator"></div>
                                     <div className="my-account-page__info">
                                         <p>OAB:</p>
                                         <p>{(userData.oab)}</p>
@@ -131,28 +133,28 @@ export default function MyAccountPage(){
                                 </>
                             }
 
-                            <div className="separator"></div>
+                            <div className="row-separator"></div>
 
                             <div className="my-account-page__info">
                                 <p>Tipo de conta:</p>
                                 <p>{(userData.role === 'client') ? 'Cliente' : 'Procurador'}</p>
                             </div>
 
-                            <div className="separator"></div>
+                            <div className="row-separator"></div>
 
                             <div className="my-account-page__info">
                                 <p>Email:</p>
                                 <p>{userData.email}</p>
                             </div>
 
-                            <div className="separator"></div>
+                            <div className="row-separator"></div>
 
                             <div className="my-account-page__info">
                                 <p>Data de cadastro:</p>
                                 <p>{formatDate(userData.registerDate)}</p>
                             </div>
 
-                            <div className="separator"></div>
+                            <div className="row-separator"></div>
                             </>
                         }
                     </section>

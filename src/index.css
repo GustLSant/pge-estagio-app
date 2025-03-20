@@ -42,6 +42,13 @@ a:visited{
   box-shadow: 4px 4px 4px rgba(0,0,0, 0.15);
 }
 
+.row-separator{
+  flex-grow: 1;
+  background-color: var(--darkgray);
+  height: 1px;
+}
+
+
 .rotating-element{
   animation-name: rotating;
   animation-duration: 0.5s;

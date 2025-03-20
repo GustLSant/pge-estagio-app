@@ -17,11 +17,6 @@
             word-break: break-all;
         }
     }
-
-    .separator{
-        background-color: var(--darkgray);
-        height: 1px;
-    }
 }
 
 .my-account-page__buttons-container{
