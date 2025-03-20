@@ -195,7 +195,7 @@ export default function ClientProcessListPage(){
                                             <td>{element.number}</td>
                                             <td>{getDiegestableStatusName(element.status)}</td>
                                             <td>{formatDate(element.startDate)}</td>
-                                            <td>{formatDate(element.endDate)}</td>
+                                            <td>{(element.endDate) ? formatDate(element.endDate) : '-'}</td>
                                         </tr>
                                     )
                                 })

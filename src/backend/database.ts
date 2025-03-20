@@ -83,7 +83,7 @@ export const defaultDatabase:Database = {
             courtDivision: '3º Vara Cível de Aracaju',
             court: 'Tribunal de Justiça do Estado de Sergipe (TJSE)',
             startDate: new Date('2025/03/23'),
-            endDate: new Date('2025/03/23'),
+            endDate: undefined,
         },
         {
             id: 1,
@@ -95,7 +95,7 @@ export const defaultDatabase:Database = {
             courtDivision: '1ª Vara de Família e Sucessões',
             court: 'Tribunal de Justiça do Estado de São Paulo (TJSP)',
             startDate: new Date('2025/03/07'),
-            endDate: new Date('2025/03/07'),
+            endDate: undefined,
         },
         {
             id: 2,
@@ -107,7 +107,7 @@ export const defaultDatabase:Database = {
             courtDivision: '2ª Vara Cível',
             court: 'Tribunal de Justiça do Estado do Rio de Janeiro (TJRJ)',
             startDate: new Date('2025/03/10'),
-            endDate: new Date('2025/03/10'),
+            endDate: undefined,
         },
         {
             id: 3,
@@ -119,7 +119,7 @@ export const defaultDatabase:Database = {
             courtDivision: '4ª Vara de Execuções Criminais',
             court: 'Tribunal de Justiça do Estado de Minas Gerais (TJMG)',
             startDate: new Date('2025/03/19'),
-            endDate: new Date('2025/03/19'),
+            endDate: undefined,
         },
         {
             id: 4,
@@ -131,7 +131,7 @@ export const defaultDatabase:Database = {
             courtDivision: '5ª Vara de Sucessões',
             court: 'Tribunal de Justiça de Pernambuco (TJPE)',
             startDate: new Date('2025/03/05'),
-            endDate: new Date('2025/03/05'),
+            endDate: undefined,
         },
         {
             id: 5,
@@ -142,8 +142,8 @@ export const defaultDatabase:Database = {
             place: 'Fórum Des. Sarney Costa - São Luís - MA',
             courtDivision: '2ª Vara da Fazenda Pública',
             court: 'Tribunal de Justiça do Maranhão (TJMA)',
-            startDate: new Date('2025/03/21'),
-            endDate: new Date('2025/03/21'),
+            startDate: new Date('2025/02/11'),
+            endDate: new Date('2025/03/25'),
         },
         {
             id: 6,
@@ -154,8 +154,8 @@ export const defaultDatabase:Database = {
             place: 'Fórum da Comarca de Itabaiana - SE',
             courtDivision: '1ª Vara Cível',
             court: 'Tribunal de Justiça do Estado de Sergipe (TJSE)',
-            startDate: new Date('2025/03/22'),
-            endDate: new Date('2025/03/22'),
+            startDate: new Date('2025/02/06'),
+            endDate: new Date('2025/03/18'),
         },
         {
             id: 7,
@@ -166,8 +166,8 @@ export const defaultDatabase:Database = {
             place: 'Fórum Miguel Seabra Fagundes - Natal - RN',
             courtDivision: 'Vara de Família',
             court: 'Tribunal de Justiça do Rio Grande do Norte (TJRN)',
-            startDate: new Date('2025/03/18'),
-            endDate: new Date('2025/03/18'),
+            startDate: new Date('2024/12/22'),
+            endDate: new Date('2025/02/10'),
         },
         {
             id: 8,
@@ -178,8 +178,8 @@ export const defaultDatabase:Database = {
             place: 'Fórum de Cuiabá - MT',
             courtDivision: '3ª Vara Criminal',
             court: 'Tribunal de Justiça de Mato Grosso (TJMT)',
-            startDate: new Date('2025/03/06'),
-            endDate: new Date('2025/03/06'),
+            startDate: new Date('2023/06/12'),
+            endDate: new Date('2025/03/10'),
         },
         {
             id: 9,
@@ -190,8 +190,8 @@ export const defaultDatabase:Database = {
             place: 'Fórum Cível - João Pessoa - PB',
             courtDivision: '4ª Vara de Família',
             court: 'Tribunal de Justiça da Paraíba (TJPB)',
-            startDate: new Date('2025/03/25'),
-            endDate: new Date('2025/03/25'),
+            startDate: new Date('2024/08/22'),
+            endDate: new Date('2025/01/30'),
         },
     ]
 }

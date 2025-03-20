@@ -35,7 +35,7 @@ export type Process = {
     courtDivision: string,
     court: string,
     startDate: Date,
-    endDate: Date,
+    endDate: Date | undefined,
 }
 
 
