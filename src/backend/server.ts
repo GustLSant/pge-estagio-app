@@ -102,7 +102,6 @@ export function tryChangePassword(user: User, currentPassword: string, newPasswo
             if(foundAccount){
                 if(foundAccount.password === currentPassword){
                     foundAccount.password = newPassword; /* ja altera o objeto dentro do array */
-                    console.log('array de dados de contas alterado: ', accountCredentials);
                     sessionStorage.setItem('accountCredentials', JSON.stringify(accountCredentials));
                     resolve({
                         status: 201,
@@ -122,6 +121,50 @@ export function tryChangePassword(user: User, currentPassword: string, newPasswo
                 reject({
                     status: 404,
                     message: 'Credenciais não encontradas no banco de dados.',
+                    data: null,
+                })
+            }
+        }
+        else{
+            reject({
+                status: 404,
+                message: 'Banco de dados não encontrado.',
+                data: null,
+            })
+        }
+    })
+}
+
+
+export function getProcessById(id:number, user:User): Promise<Response>{
+    return new Promise((resolve, reject)=>{
+        const sessionData: string | null = sessionStorage.getItem('process');
+    
+        if(sessionData){
+            const allProcess: Process[] = JSON.parse(sessionData);
+            const foundProcess: Process | undefined = allProcess.find((element: Process)=>{return (element.id === id)});
+            if(foundProcess){
+                if(foundProcess.clientId === user.id || foundProcess.attorneyId === user.id){
+                    foundProcess.startDate = new Date(foundProcess.startDate); /* convertendo a string de volta para Date */
+                    if(foundProcess.endDate){ foundProcess.endDate = new Date(foundProcess.endDate); }
+                    resolve({
+                        status: 200,
+                        message: 'Processo encontrado com sucesso.',
+                        data: foundProcess,
+                    })
+                }
+                else{
+                    reject({
+                        status: 401,
+                        message: 'Usuário não tem permissão para visualizar esse processo.',
+                        data: null,
+                    })
+                }
+            }
+            else{
+                reject({
+                    status: 404,
+                    message: 'Processo não encontrado.',
                     data: null,
                 })
             }
@@ -163,7 +206,7 @@ export function getProcessListByUserId(userId:number): Promise<Response>{
                 foundProcess[idx] = {
                     ...element, 
                     startDate: new Date(element.startDate),
-                    endDate: new Date(element.endDate),
+                    endDate: (element.endDate) ? new Date(element.endDate) : undefined,
                 }
             })
 
