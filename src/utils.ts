@@ -8,9 +8,15 @@ export function formatDate(date: Date): string {
     return `${day}/${month}/${year}`;
 }
 
-export function makeStatusDiegestible(status:ProcessStatus){
-    if(status === "filled"){ return 'Autuado'; }
-    else if(status === "pending"){ return 'Em Andamento'; }
-    else if(status === "ruled"){ return 'Julgado'; }
-    else if(status === "suspended"){ return 'Suspenso'; }
+export function getDiegestableStatusName(status:ProcessStatus): string{
+    switch (status){
+        case 'filled':
+            return 'Autuado';
+        case 'pending':
+            return 'Em Andamento';
+        case 'ruled':
+            return 'Julgado';
+        case 'suspended':
+            return 'Suspenso';
+    }
 }

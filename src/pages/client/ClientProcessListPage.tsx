@@ -2,7 +2,7 @@ import TextInput from "../../components/TextInput/TextInput";
 import LoadingIcon from "../../components/LoadingIcon/LoadingIcon";
 import { Process, ProcessStatus, Response } from "../../types";
 import { getProcessListByUserId, simulateNetworkDelay } from "../../backend/server";
-import { formatDate, makeStatusDiegestible } from "../../utils";
+import { formatDate, getDiegestableStatusName } from "../../utils";
 import { BiFile } from "react-icons/bi";
 import { BiSortDown } from "react-icons/bi";
 import { BiSortUp } from "react-icons/bi";
@@ -193,7 +193,7 @@ export default function ClientProcessListPage(){
                                     return(
                                         <tr key={idx} onClick={()=>{handleClickProcess(element.id)}}>
                                             <td>{element.number}</td>
-                                            <td>{makeStatusDiegestible(element.status)}</td>
+                                            <td>{getDiegestableStatusName(element.status)}</td>
                                             <td>{formatDate(element.startDate)}</td>
                                             <td>{formatDate(element.endDate)}</td>
                                         </tr>
