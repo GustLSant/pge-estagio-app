@@ -3,20 +3,21 @@ import LoadingIcon from "../../components/LoadingIcon/LoadingIcon";
 import { Process, ProcessStatus, Response } from "../../types";
 import { getProcessListByUserId, simulateNetworkDelay } from "../../backend/server";
 import { formatDate, getDiegestableStatusName } from "../../utils";
+import Button from "../../components/Button/Button";
 import { BiFile } from "react-icons/bi";
 import { BiSortDown } from "react-icons/bi";
 import { BiSortUp } from "react-icons/bi";
 import { useContext, useEffect, useState } from "react";
-import './ClientProcessListPage.css';
 import { AuthContext, AuthContextType } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router";
+import './ProcessListPage.css';
 
 
 type FilterType = 'none' | ProcessStatus;
 type SortType = 'none' | 'crescent' | 'descrescent';
 
 
-export default function ClientProcessListPage(){
+export default function ProcessListPage(){
     const [filter, setFilter] = useState<FilterType>('none');
     const [sortMethod, setSortMethod] = useState<SortType>('none');
     const [searchString, setSearchString] = useState<string>('');
@@ -125,7 +126,7 @@ export default function ClientProcessListPage(){
 
 
     return(
-        <div className="client-process-list-page">
+        <div className="process-list-page">
             <header className="process-list-page__header">
                 <BiFile />
                 <h2>Processos</h2>
@@ -200,10 +201,41 @@ export default function ClientProcessListPage(){
                                     )
                                 })
                             }
+                            {
+                                refinedData.map((element:Process, idx)=>{
+                                    return(
+                                        <tr key={idx} onClick={()=>{handleClickProcess(element.id)}}>
+                                            <td>{element.number}</td>
+                                            <td>{getDiegestableStatusName(element.status)}</td>
+                                            <td>{formatDate(element.startDate)}</td>
+                                            <td>{(element.endDate) ? formatDate(element.endDate) : '-'}</td>
+                                        </tr>
+                                    )
+                                })
+                            }
+                            {
+                                refinedData.map((element:Process, idx)=>{
+                                    return(
+                                        <tr key={idx} onClick={()=>{handleClickProcess(element.id)}}>
+                                            <td>{element.number}</td>
+                                            <td>{getDiegestableStatusName(element.status)}</td>
+                                            <td>{formatDate(element.startDate)}</td>
+                                            <td>{(element.endDate) ? formatDate(element.endDate) : '-'}</td>
+                                        </tr>
+                                    )
+                                })
+                            }
                         </tbody>
                     </table>
                 }
             </section>
+
+            {
+                (authContext?.user?.role === 'attorney') &&
+                <footer>
+                    <Button label="Cadastrar Processo" onClick={()=>{}} fontSize="0.9em" paddingHorizontal="15px" />
+                </footer>
+            }
         </div>
     )
 }

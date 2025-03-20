@@ -122,3 +122,11 @@
         text-align: center;
     }
 }
+
+
+.process-list-page{
+    footer{
+        display: flex;
+        justify-content: flex-end;
+    }
+}

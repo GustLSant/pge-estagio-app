@@ -1,17 +1,17 @@
-import { Navigate } from 'react-router'
+import { Navigate } from 'react-router';
 
-import AppLayout from './pages/general/AppLayout.tsx'
-import LoginPage from './pages/general/LoginPage.tsx'
-import ErrorPage from './pages/general/ErrorPage.tsx'
-import MyAccountPage from './pages/general/MyAccountPage.tsx'
+import AppLayout from './pages/general/AppLayout.tsx';
+import LoginPage from './pages/general/LoginPage.tsx';
+import ErrorPage from './pages/general/ErrorPage.tsx';
+import MyAccountPage from './pages/general/MyAccountPage.tsx';
 
-import ClientProcessListPage from './pages/client/ClientProcessListPage.tsx'
-import ClientProcessViewerPage from './pages/client/ClientProcessViewerPage.tsx'
+import ProcessListPage from './pages/general/ProcessListPage.tsx';
 
-import AttorneyProcessListPage from './pages/attorney/AttorneyProcessListPage.tsx'
-import AttorneyProcessViewerPage from './pages/attorney/AttorneyProcessViewerPage.tsx'
-import AttorneyProcessCreationPage from './pages/attorney/AttorneyProcessCreationPage.tsx'
-import ProtectedRoute from './components/ProtectedRoute.tsx'
+import ClientProcessViewerPage from './pages/client/ClientProcessViewerPage.tsx';
+
+import AttorneyProcessViewerPage from './pages/attorney/AttorneyProcessViewerPage.tsx';
+import AttorneyProcessCreationPage from './pages/attorney/AttorneyProcessCreationPage.tsx';
+import ProtectedRoute from './components/ProtectedRoute.tsx';
 
 
 const routes = [
@@ -48,7 +48,7 @@ const routes = [
           },
           {
             path: '/cliente/lista-processos',
-            element: <ClientProcessListPage />
+            element: <ProcessListPage />
           },
           {
             path: '/cliente/visualizar-processo',
@@ -75,7 +75,7 @@ const routes = [
           },
           {
             path: '/procurador/lista-processos',
-            element: <AttorneyProcessListPage />
+            element: <ProcessListPage />
           },
           {
             path: '/procurador/visualizar-processo',
