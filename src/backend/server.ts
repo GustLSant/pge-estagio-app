@@ -180,6 +180,41 @@ export function getProcessById(id:number, user:User): Promise<Response>{
 }
 
 
+export function registerProcess(process: Process): Promise<Response>{
+    return new Promise((resolve, reject)=>{
+        const processSessionData: string | null = sessionStorage.getItem('process');
+        const usersSessionData: string | null = sessionStorage.getItem('users');
+    
+        if(processSessionData && usersSessionData){
+            const allProcess: Process[] = JSON.parse(processSessionData);
+            const allUsers: User[] = JSON.parse(usersSessionData);
+
+            const foundUser: User | undefined = allUsers.find((element: User)=>{return(element.fullName === process.clientFullName)});
+            let clientId: number = (foundUser) ? foundUser.id : -1;
+            process.clientId = clientId;
+            process.id = allProcess[allProcess.length-1].id + 1;
+            
+            if(clientId === -1){ console.warn('Cliente com nome ', process.clientFullName, ' não encontrado.'); }
+
+            allProcess.push(process);
+            sessionStorage.setItem('process', JSON.stringify(allProcess));
+            resolve({
+                status: 201,
+                message: 'Processo criado com sucesso.',
+                data: process
+            });
+        }
+        else{
+            reject({
+                status: 404,
+                message: 'Banco de dados não encontrado',
+                data: null
+            });
+        }
+    })
+}
+
+
 function getUserDataFromAccountCredentials(credentials: AccountCredentials){
     const sessionData: string | null = sessionStorage.getItem('users');
     

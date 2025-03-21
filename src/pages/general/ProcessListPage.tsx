@@ -198,30 +198,6 @@ export default function ProcessListPage(){
                                     )
                                 })
                             }
-                            {
-                                refinedData.map((element:Process, idx)=>{
-                                    return(
-                                        <tr key={idx} onClick={()=>{handleClickProcess(element.id)}}>
-                                            <td>{element.number}</td>
-                                            <td>{getDiegestableStatusName(element.status)}</td>
-                                            <td>{formatDate(element.startDate)}</td>
-                                            <td>{(element.endDate) ? formatDate(element.endDate) : '-'}</td>
-                                        </tr>
-                                    )
-                                })
-                            }
-                            {
-                                refinedData.map((element:Process, idx)=>{
-                                    return(
-                                        <tr key={idx} onClick={()=>{handleClickProcess(element.id)}}>
-                                            <td>{element.number}</td>
-                                            <td>{getDiegestableStatusName(element.status)}</td>
-                                            <td>{formatDate(element.startDate)}</td>
-                                            <td>{(element.endDate) ? formatDate(element.endDate) : '-'}</td>
-                                        </tr>
-                                    )
-                                })
-                            }
                         </tbody>
                     </table>
                 }

@@ -1,0 +1,48 @@
+.process-register-page{
+    font-weight: 300;
+
+    section{
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        overflow: auto;
+
+        .process-page__date-input-container{
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            padding-top: 5px;
+
+            input[type = 'date']{
+                align-self: center;
+                font-size: 0.9em;
+                padding: 7px;
+                background-color: var(--darkblue);
+                color: white;
+                border-radius: 3px;
+                pointer-events: none;
+
+                /* Remove o botão de calendário no Chrome */
+                &::-webkit-calendar-picker-indicator {
+                    /* background: transparent; */
+                    background-color: white;
+                    border-radius: 2px;
+                    color: transparent;
+                    cursor: pointer;
+                    margin-left: -15px;
+                    pointer-events: auto;
+                }
+
+                &.disabled{
+                    background-color: var(--darkgray);
+                }
+            }
+        }
+        
+    }
+
+    footer{
+        display: flex;
+        justify-content: flex-end;
+    }
+}
