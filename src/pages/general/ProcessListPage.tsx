@@ -1,15 +1,13 @@
-import TextInput from "../../components/TextInput/TextInput";
-import LoadingIcon from "../../components/LoadingIcon/LoadingIcon";
+import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router";
+import { AuthContext, AuthContextType } from "../../contexts/AuthContext";
 import { Process, ProcessStatus, Response } from "../../types";
 import { getProcessListByUserId, simulateNetworkDelay } from "../../backend/server";
 import { formatDate, getDiegestableStatusName } from "../../utils";
+import { BiFile, BiSortDown, BiSortUp } from "react-icons/bi";
+import TextInput from "../../components/TextInput/TextInput";
+import LoadingIcon from "../../components/LoadingIcon/LoadingIcon";
 import Button from "../../components/Button/Button";
-import { BiFile } from "react-icons/bi";
-import { BiSortDown } from "react-icons/bi";
-import { BiSortUp } from "react-icons/bi";
-import { useContext, useEffect, useState } from "react";
-import { AuthContext, AuthContextType } from "../../contexts/AuthContext";
-import { useNavigate } from "react-router";
 import './ProcessListPage.css';
 
 
@@ -22,9 +20,8 @@ export default function ProcessListPage(){
     const [sortMethod, setSortMethod] = useState<SortType>('none');
     const [searchString, setSearchString] = useState<string>('');
     const [isLoading, setIsLoading] = useState<boolean>(true);
-    const [hasError, setHasError] = useState<boolean>(false);
     const [rawData, setRawData] = useState<Process[]>([]);
-    const [refinedData, setRefinedData] = useState<Process[]>([]);
+    const [refinedData, setRefinedData] = useState<Process[] | undefined>([]);
     const authContext:AuthContextType | undefined = useContext(AuthContext);
     const navigate = useNavigate();
 
@@ -58,13 +55,11 @@ export default function ProcessListPage(){
             })
             .catch((error: Response)=>{
                 setIsLoading(false);
-                setHasError(true);
                 console.log('Erro ao requisitar dados do sessionStorage: ', error);
             })
         }
         else{
             setIsLoading(false);
-            setHasError(true);
             console.log('Erro ao requisitar dados do sessionStorage: Id do usuário nao encontrado no AuthContext');
         }
     }
@@ -131,7 +126,7 @@ export default function ProcessListPage(){
 
     return(
         <div className="process-list-page">
-            <header className="process-list-page__header">
+            <header>
                 <BiFile />
                 <h2>Processos</h2>
             </header>
@@ -178,7 +173,7 @@ export default function ProcessListPage(){
         
             <section className="process-list-page__table-section">
                 {
-                    hasError ? <p>Algo deu errado, por favor recarregue a página.</p>
+                    (refinedData === undefined) ? <p>Algo deu errado, por favor recarregue a página.</p>
                     :
                     isLoading ? <LoadingIcon />
                     :
@@ -236,6 +231,7 @@ export default function ProcessListPage(){
 
             {
                 (authContext?.user?.role === 'attorney') &&
+                (refinedData !== undefined && !isLoading && refinedData.length !== 0) &&
                 <footer>
                     <Button label="Cadastrar Processo" onClick={()=>{}} fontSize="0.9em" paddingHorizontal="15px" />
                 </footer>
