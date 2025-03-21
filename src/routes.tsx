@@ -90,7 +90,7 @@ const routes = [
             element: <ProcessRegisterPage />
           },
           {
-            path: '/procurador/editar-processo',
+            path: '/procurador/editar-processo/:id',
             element: <ProcessEditPage />
           }
         ]

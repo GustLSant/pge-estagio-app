@@ -194,9 +194,16 @@ export function registerProcess(process: Process): Promise<Response>{
             process.clientId = clientId;
             process.id = allProcess[allProcess.length-1].id + 1;
             
-            if(clientId === -1){ console.warn('Cliente com nome ', process.clientFullName, ' não encontrado.'); }
+            if(clientId === -1){ console.warn('Cliente com nome', process.clientFullName, 'não encontrado.'); }
 
-            allProcess.push(process);
+            let processIdx: number = allProcess.findIndex((process: Process) => process.id === process.id);
+            if(processIdx !== -1){
+                allProcess[processIdx] = process;
+            }
+            else{
+                allProcess.push(process);
+            }
+            
             sessionStorage.setItem('process', JSON.stringify(allProcess));
             resolve({
                 status: 201,
