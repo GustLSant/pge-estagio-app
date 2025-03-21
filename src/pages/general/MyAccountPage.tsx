@@ -87,9 +87,9 @@ export default function MyAccountPage(){
                     <h3>Alterar Senha</h3>
 
                     <div className="my-acount-page__inputs-password-container">
-                        <TextInput label="Senha atual" value={currentPassword} onChange={handleChangeCurrentPasswordInput} secret error={wrongPassword} helperText={(wrongPassword) ? 'Senha incorreta' : ''} />
+                        <TextInput label="Senha atual" value={currentPassword} onChange={handleChangeCurrentPasswordInput} secret error={wrongPassword} helperText="Senha incorreta" />
                         <TextInput label="Nova senha" value={newPassword} onChange={handleChangeNewPasswordInput} secret error={differentPasswords} />
-                        <TextInput label="Confirmar nova senha" value={confirmNewPassword} onChange={handleChangeConfirmNewPasswordInput} secret error={differentPasswords} helperText={differentPasswords ? 'As duas senhas não coincidem' : ''} />
+                        <TextInput label="Confirmar nova senha" value={confirmNewPassword} onChange={handleChangeConfirmNewPasswordInput} secret error={differentPasswords} helperText="As duas senhas não coincidem" />
                     </div>
 
                     <div className="my-acount-page__modal-button-password-container">

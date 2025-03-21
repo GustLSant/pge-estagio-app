@@ -47,7 +47,7 @@ export default function TextInput(_props:TextInputProps){
             
             
             {
-                props.helperText &&
+                props.helperText && props.error &&
                 <p className="text-input__helper-text">{props.helperText}</p>
             }
         </div>
