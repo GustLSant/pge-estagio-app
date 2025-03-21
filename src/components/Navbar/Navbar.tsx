@@ -1,10 +1,7 @@
 import { useState, useContext, useEffect, useRef } from 'react'
 import { AuthContext } from '../../contexts/AuthContext'
 import { useNavigate, useLocation } from 'react-router';
-import { BiFile } from "react-icons/bi";
-import { BiUserCircle } from "react-icons/bi";
-import { BiUser } from "react-icons/bi";
-import { BiArrowFromLeft } from "react-icons/bi";
+import { BiFile, BiUser, BiArrowFromLeft, BiUserCircle, BiLogOut   } from "react-icons/bi";
 import './Navbar.css'
 
 type NavbarState = 'initialOpen' | 'open' | 'closed';
@@ -34,7 +31,7 @@ export default function Navbar(){
     }
 
     function handleMouseLeave(){
-        if(state === 'initialOpen' || state === 'open'){ setState('closed'); }
+        // if(state === 'initialOpen' || state === 'open'){ setState('closed'); }
     }
 
     function handleClickOutsideNavbar(event: MouseEvent){
@@ -51,6 +48,13 @@ export default function Navbar(){
           document.removeEventListener('click', handleClickOutsideNavbar);
         };
     }, []);
+
+
+    function handleClickExitButton(){
+        sessionStorage.removeItem('currentUser');
+        authContext?.setUser(undefined);
+        // nao precisa redirecionar pq o ProtectedRoute.tsx ja faz isso automaticamente
+    }
 
 
     return(
@@ -88,7 +92,7 @@ export default function Navbar(){
                 
                 <div className="navbar__spacer"></div>
                 
-                <section className='navbar__footer'>
+                <footer className='navbar__footer'>
                     <BiUser />
                     <div>
                         <p>{authContext?.user?.shortName}</p>
@@ -99,7 +103,11 @@ export default function Navbar(){
                             }
                         </small>
                     </div>
-                </section>
+
+                    <div className='navbar-footer__container-exit'>
+                        <BiLogOut  onClick={handleClickExitButton} title='Sair da conta' />
+                    </div>
+                </footer>
             </div>
         </div>
     )
