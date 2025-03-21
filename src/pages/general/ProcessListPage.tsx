@@ -37,9 +37,7 @@ export default function ProcessListPage(){
     }
 
     function handleChangeSearchString(e: React.ChangeEvent<HTMLInputElement>): void{
-        if(!/[a-zA-Z]/.test(e.target.value)){
-            setSearchString(e.target.value);
-        }
+        setSearchString(e.target.value.replace(/[a-zA-Z]/g, ""));
     }
 
 
@@ -233,7 +231,7 @@ export default function ProcessListPage(){
                 (authContext?.user?.role === 'attorney') &&
                 (refinedData !== undefined && !isLoading && refinedData.length !== 0) &&
                 <footer>
-                    <Button label="Cadastrar Processo" onClick={()=>{}} />
+                    <Button label="Cadastrar Processo" onClick={()=>{navigate('/procurador/cadastrar-processo')}} />
                 </footer>
             }
         </div>
