@@ -127,7 +127,7 @@ export default function ProcessViewerPage(){
                     {
                         (authContext?.user?.role === 'attorney') &&
                         <footer>
-                            <Button label="Editar Processo" onClick={()=>{}} />
+                            <Button label="Editar Processo" onClick={()=>{navigate('/procurador/editar-processo')}} />
                         </footer>
                     }
                 </>

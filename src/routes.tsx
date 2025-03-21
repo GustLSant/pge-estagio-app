@@ -1,16 +1,17 @@
 import { Navigate } from 'react-router';
 
 import AppLayout from './pages/general/AppLayout.tsx';
+import ProtectedRoute from './components/ProtectedRoute.tsx';
+
 import LoginPage from './pages/general/LoginPage.tsx';
 import ErrorPage from './pages/general/ErrorPage/ErrorPage.tsx';
 import MyAccountPage from './pages/general/MyAccountPage.tsx';
 
 import ProcessListPage from './pages/general/ProcessListPage.tsx';
-
 import ProcessViewerPage from './pages/general/ProcessViewerPage/ProcessViewerPage.tsx';
 
 import ProcessRegisterPage from './pages/attorney/ProcessRegisterPage/ProcessRegisterPage.tsx';
-import ProtectedRoute from './components/ProtectedRoute.tsx';
+import ProcessEditPage from './pages/attorney/ProcessEditPage/ProcessEditPage.tsx';
 
 
 const routes = [
@@ -88,6 +89,10 @@ const routes = [
             path: '/procurador/cadastrar-processo',
             element: <ProcessRegisterPage />
           },
+          {
+            path: '/procurador/editar-processo',
+            element: <ProcessEditPage />
+          }
         ]
       },
     ]
