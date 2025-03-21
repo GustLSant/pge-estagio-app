@@ -1,13 +1,13 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import { AuthContext, AuthContextType } from "../../contexts/AuthContext";
-import { Process, ProcessStatus, Response } from "../../types";
-import { getProcessListByUserId, simulateNetworkDelay } from "../../backend/server";
-import { formatDate, getDiegestableStatusName } from "../../utils";
+import { AuthContext, AuthContextType } from "../../../contexts/AuthContext";
+import { Process, ProcessStatus, Response } from "../../../types";
+import { getProcessListByUserId, simulateNetworkDelay } from "../../../backend/server";
+import { formatDate, getDiegestableStatusName } from "../../../utils";
 import { BiFile, BiSortDown, BiSortUp } from "react-icons/bi";
-import TextInput from "../../components/TextInput/TextInput";
-import LoadingIcon from "../../components/LoadingIcon/LoadingIcon";
-import Button from "../../components/Button/Button";
+import TextInput from "../../../components/TextInput/TextInput";
+import LoadingIcon from "../../../components/LoadingIcon/LoadingIcon";
+import Button from "../../../components/Button/Button";
 import './ProcessListPage.css';
 
 

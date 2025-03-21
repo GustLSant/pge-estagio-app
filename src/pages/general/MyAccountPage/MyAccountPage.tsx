@@ -1,14 +1,14 @@
 import { ChangeEvent, useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../contexts/AuthContext";
-import { User, Response } from "../../types";
-import { formatDate } from "../../utils";
-import Button from "../../components/Button/Button";
-import Modal from "../../components/Modal/Modal";
-import TextInput from "../../components/TextInput/TextInput";
+import { AuthContext } from "../../../contexts/AuthContext";
+import { User, Response } from "../../../types";
+import { formatDate } from "../../../utils";
+import Button from "../../../components/Button/Button";
+import Modal from "../../../components/Modal/Modal";
+import TextInput from "../../../components/TextInput/TextInput";
 import { BiUserCircle } from "react-icons/bi";
+import LoadingIcon from "../../../components/LoadingIcon/LoadingIcon";
+import { tryChangePassword } from "../../../backend/server";
 import './MyAccountPage.css';
-import LoadingIcon from "../../components/LoadingIcon/LoadingIcon";
-import { tryChangePassword } from "../../backend/server";
 
 
 export default function MyAccountPage(){
