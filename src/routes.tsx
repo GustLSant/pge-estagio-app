@@ -7,9 +7,8 @@ import MyAccountPage from './pages/general/MyAccountPage.tsx';
 
 import ProcessListPage from './pages/general/ProcessListPage.tsx';
 
-import ClientProcessViewerPage from './pages/client/ClientProcessViewerPage.tsx';
+import ProcessViewerPage from './pages/general/ProcessViewerPage/ProcessViewerPage.tsx';
 
-import AttorneyProcessViewerPage from './pages/attorney/AttorneyProcessViewerPage.tsx';
 import AttorneyProcessCreationPage from './pages/attorney/AttorneyProcessCreationPage.tsx';
 import ProtectedRoute from './components/ProtectedRoute.tsx';
 
@@ -56,7 +55,7 @@ const routes = [
           },
           {
             path: '/cliente/visualizar-processo/:id',
-            element: <ClientProcessViewerPage />
+            element: <ProcessViewerPage />
           },
         ]
       },
@@ -83,7 +82,7 @@ const routes = [
           },
           {
             path: '/procurador/visualizar-processo/:id',
-            element: <AttorneyProcessViewerPage />
+            element: <ProcessViewerPage />
           },
           {
             path: '/procurador/criar-processo',

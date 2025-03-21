@@ -1,16 +1,17 @@
 import { useContext, useEffect, useState } from "react";
-import { Process, ProcessStatus, Response, User } from "../../types";
 import { useNavigate, useParams } from "react-router";
-import { formatDate, getDiegestableStatusName } from "../../utils";
-import { AuthContext, AuthContextType } from "../../contexts/AuthContext";
-import LoadingIcon from "../../components/LoadingIcon/LoadingIcon";
+import { Process, Response } from "../../../types";
+import { getProcessById, simulateNetworkDelay } from "../../../backend/server";
+import { formatDate, getDiegestableStatusName } from "../../../utils";
+import { AuthContext, AuthContextType } from "../../../contexts/AuthContext";
+import LoadingIcon from "../../../components/LoadingIcon/LoadingIcon";
+import Button from "../../../components/Button/Button";
 import { BiFile } from "react-icons/bi";
 import { BiArrowBack } from "react-icons/bi";
-import './ClientProcessViewerPage.css'
-import { getProcessById, simulateNetworkDelay } from "../../backend/server";
+import './ProcessViewerPage.css'
 
 
-export default function ClientProcessViewerPage(){
+export default function ProcessViewerPage(){
     const { id } = useParams();
     const [data, setData] = useState<Process | undefined>(undefined);
     const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -46,8 +47,8 @@ export default function ClientProcessViewerPage(){
 
 
     return(
-        <div className="client-process-viewer-page">
-            <header className="process-list-page__header">
+        <div className="process-viewer-page">
+            <header>
                 <BiFile />
                 <h2>Visualizar Processo</h2>
             </header>
@@ -108,6 +109,13 @@ export default function ClientProcessViewerPage(){
 
                         <div className="row-separator"></div>
                     </div>
+
+                    {
+                        (authContext?.user?.role === 'attorney') &&
+                        <footer>
+                            <Button label="Editar Processo" onClick={()=>{}} fontSize="0.9em" paddingHorizontal="15px" />
+                        </footer>
+                    }
                 </>
             }
         </div>
