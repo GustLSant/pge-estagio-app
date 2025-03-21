@@ -11,8 +11,7 @@
         cursor: pointer;
         filter: brightness(120%);
     }
-    &:active{
-        cursor: pointer;
+    &.solid:active{
         background-image: linear-gradient(to bottom, rgba(0,0,0, 0.2), rgba(0,0,0, 0.2)); /* efeito de escurecimento */
     }
 
@@ -22,6 +21,7 @@
         color: white;
     }
     &.outlined{
+        background-color: transparent;
         border: 1px solid var(--darkblue);
     }
 

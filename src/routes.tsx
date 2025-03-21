@@ -9,7 +9,7 @@ import ProcessListPage from './pages/general/ProcessListPage.tsx';
 
 import ProcessViewerPage from './pages/general/ProcessViewerPage/ProcessViewerPage.tsx';
 
-import AttorneyProcessCreationPage from './pages/attorney/AttorneyProcessCreationPage.tsx';
+import ProcessRegisterPage from './pages/attorney/ProcessRegisterPage/ProcessRegisterPage.tsx';
 import ProtectedRoute from './components/ProtectedRoute.tsx';
 
 
@@ -85,8 +85,8 @@ const routes = [
             element: <ProcessViewerPage />
           },
           {
-            path: '/procurador/criar-processo',
-            element: <AttorneyProcessCreationPage />
+            path: '/procurador/cadastrar-processo',
+            element: <ProcessRegisterPage />
           },
         ]
       },

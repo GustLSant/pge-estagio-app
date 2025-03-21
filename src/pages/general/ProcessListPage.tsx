@@ -233,7 +233,7 @@ export default function ProcessListPage(){
                 (authContext?.user?.role === 'attorney') &&
                 (refinedData !== undefined && !isLoading && refinedData.length !== 0) &&
                 <footer>
-                    <Button label="Cadastrar Processo" onClick={()=>{}} fontSize="0.9em" paddingHorizontal="15px" />
+                    <Button label="Cadastrar Processo" onClick={()=>{}} />
                 </footer>
             }
         </div>

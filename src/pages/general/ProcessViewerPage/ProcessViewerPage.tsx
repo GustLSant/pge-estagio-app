@@ -53,10 +53,10 @@ export default function ProcessViewerPage(){
                 <h2>Visualizar Processo</h2>
             </header>
             
-            <div onClick={handleClickBackButton} className="process-viewer-page__back-button">
-                <BiArrowBack />
-                <p>Voltar</p>
+            <div>
+                <Button label="Voltar" leftIcon={BiArrowBack} onClick={handleClickBackButton} variant="outlined" paddingHorizontal="10px" paddingVertical="5px" />
             </div>
+            
 
             {
                 (isLoading) ? <LoadingIcon /> :
@@ -113,7 +113,7 @@ export default function ProcessViewerPage(){
                     {
                         (authContext?.user?.role === 'attorney') &&
                         <footer>
-                            <Button label="Editar Processo" onClick={()=>{}} fontSize="0.9em" paddingHorizontal="15px" />
+                            <Button label="Editar Processo" onClick={()=>{}} />
                         </footer>
                     }
                 </>

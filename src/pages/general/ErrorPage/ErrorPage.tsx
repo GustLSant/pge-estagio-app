@@ -14,8 +14,7 @@ export default function ErrorPage(){
                     <p>A página procurada não foi encontrada. </p> 
                     <p>Por favor, volte para a página anterior.</p>
                 </div>
-                <Button label="Voltar" onClick={()=>{navigate(-1)}} paddingHorizontal="30px" />
-                {/* <p onClick={() => } style={{textDecoration: 'underline'}}>Voltar</p> */}
+                <Button label="Voltar" onClick={()=>{navigate(-1)}} fontSize="1.0em" />
             </div>
         </div>
     )

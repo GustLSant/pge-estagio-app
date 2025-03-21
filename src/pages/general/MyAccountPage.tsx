@@ -93,7 +93,7 @@ export default function MyAccountPage(){
                     </div>
 
                     <div className="my-acount-page__modal-button-password-container">
-                        <Button label="Alterar Senha" fontSize="0.9em" onClick={handleClickConfirmChangePassword} />
+                        <Button label="Alterar Senha" onClick={handleClickConfirmChangePassword} />
                     </div>
                 </Modal>
             }
@@ -160,7 +160,7 @@ export default function MyAccountPage(){
                     </section>
 
                     <section className="my-account-page__buttons-container">
-                        <Button label="Alterar Senha" onClick={handleClickChangePassword} fontSize="0.9em" />
+                        <Button label="Alterar Senha" onClick={handleClickChangePassword} />
                     </section>
                 </>
             }

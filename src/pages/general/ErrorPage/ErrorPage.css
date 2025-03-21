@@ -5,6 +5,7 @@
     justify-content: center;
     align-items: center;
     text-align: center;
+    font-weight: 300;
     
     background-image: url('/logo-alt-transp-branca-5.png'), var(--blue-gradient-01);
     background-position: center;
@@ -23,7 +24,7 @@
         div{
             display: flex;
             flex-direction: column;
-            gap: 5px;
+            gap: 3px;
         }
     }
 }

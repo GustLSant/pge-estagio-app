@@ -121,7 +121,7 @@ export default function LoginPage(){
                         <TextInput value={password} onChange={onChangePasswordlInput} label='Senha' fontSize='16px' secret disabled={isLoading} error={errors.passwordError} helperText={errors.passwordHelperText} />
                     </div>
                     <div className='login-container__buttons-container'>
-                        <Button label='Entrar' onClick={handleClickLoginButton} loading={isLoading} variant='solid' rightIcon={BiLogIn} grow />
+                        <Button label='Entrar' onClick={handleClickLoginButton} loading={isLoading} rightIcon={BiLogIn} fontSize='1.0em' grow />
                         <p className='login-container__forgot-password'>Esqueci minha senha</p>
                     </div>
                 </div>
