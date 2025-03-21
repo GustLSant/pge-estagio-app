@@ -1,16 +1,18 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router";
+import { AuthContext } from "../../../contexts/AuthContext";
 import { Process } from "../../../types";
 import { registerProcess, simulateNetworkDelay } from "../../../backend/server";
 import { BiEdit, BiArrowBack } from "react-icons/bi";
 import Button from "../../../components/Button/Button";
 import TextInput from "../../../components/TextInput/TextInput";
+import LoadingIcon from "../../../components/LoadingIcon/LoadingIcon";
 import './ProcessRegisterPage.css'
-import { AuthContext } from "../../../contexts/AuthContext";
 
 
-type OnChangePropertyNames = 'number' | 'clientFullName' | 'place' | 'courtDivision' | 'court' | 'startDate';
-type OnChangeParameters = {
+// esses tipos sao exportados pq tambem sao usados na pagina de editar processo
+export type OnChangePropertyNames = 'number' | 'clientFullName' | 'place' | 'courtDivision' | 'court' | 'startDate';
+export type OnChangeParameters = {
     propertyName: OnChangePropertyNames,
     value: any,
 }
@@ -87,7 +89,6 @@ export default function ProcessRegisterPage(){
                 setIsLoading(false);
                 console.error(error);
             })
-            //faz a requisicao aqui
         }
         else{
             setCanShowErrors(true);
@@ -106,21 +107,26 @@ export default function ProcessRegisterPage(){
                 <Button label="Voltar" leftIcon={BiArrowBack} onClick={handleClickBackButton} variant="outlined" paddingHorizontal="10px" paddingVertical="5px" />
             </div>
 
-            <section>
-                <TextInput label="Número"                   value={processData.number}         onChange={(e)=>{handleFormChange({propertyName: 'number', value: e.target.value})}}         error={canShowErrors && processData.number === ''}         helperText="Insira o número do processo" disabled={isLoading} />
-                <TextInput label="Nome completo do cliente" value={processData.clientFullName} onChange={(e)=>{handleFormChange({propertyName: 'clientFullName', value: e.target.value})}} error={canShowErrors && processData.clientFullName === ''} helperText="Insira o nome do cliente"    disabled={isLoading} />
-                <TextInput label="Local"                    value={processData.place}          onChange={(e)=>{handleFormChange({propertyName: 'place', value: e.target.value})}}          error={canShowErrors && processData.place === ''}          helperText="Insira o local do processo"  disabled={isLoading} />
-                <TextInput label="Vara"                     value={processData.courtDivision}  onChange={(e)=>{handleFormChange({propertyName: 'courtDivision', value: e.target.value})}}  error={canShowErrors && processData.courtDivision === ''}  helperText="Insira o nome da Vara"       disabled={isLoading} />
-                <TextInput label="Tribunal"                 value={processData.court}          onChange={(e)=>{handleFormChange({propertyName: 'court', value: e.target.value})}}          error={canShowErrors && processData.court === ''}          helperText="Insira o nome do Tribunal"   disabled={isLoading} />
-                <div className="process-page__date-input-container">
-                    <p>Data de Início: </p>
-                    <input type="date" onKeyDown={(e)=>{e.preventDefault()}} value={formatDateForInput(processData.startDate)} onChange={(e)=>{ handleFormChange({propertyName: 'startDate', value: e.target.value}) }} className={`shadow-01 ${(isLoading) ? 'disabled' : ''}`} disabled={isLoading} />
-                </div>
-            </section>
+            {
+                isLoading ? <LoadingIcon /> :
+                <>
+                    <section>
+                        <TextInput label="Número"                   value={processData.number}         onChange={(e)=>{handleFormChange({propertyName: 'number', value: e.target.value})}}         error={canShowErrors && processData.number === ''}         helperText="Insira o número do processo" />
+                        <TextInput label="Nome completo do cliente" value={processData.clientFullName} onChange={(e)=>{handleFormChange({propertyName: 'clientFullName', value: e.target.value})}} error={canShowErrors && processData.clientFullName === ''} helperText="Insira o nome do cliente"    />
+                        <TextInput label="Local"                    value={processData.place}          onChange={(e)=>{handleFormChange({propertyName: 'place', value: e.target.value})}}          error={canShowErrors && processData.place === ''}          helperText="Insira o local do processo"  />
+                        <TextInput label="Vara"                     value={processData.courtDivision}  onChange={(e)=>{handleFormChange({propertyName: 'courtDivision', value: e.target.value})}}  error={canShowErrors && processData.courtDivision === ''}  helperText="Insira o nome da Vara"       />
+                        <TextInput label="Tribunal"                 value={processData.court}          onChange={(e)=>{handleFormChange({propertyName: 'court', value: e.target.value})}}          error={canShowErrors && processData.court === ''}          helperText="Insira o nome do Tribunal"   />
+                        <div className="process-page__date-input-container">
+                            <p>Data de Início: </p>
+                            <input type="date" onKeyDown={(e)=>{e.preventDefault()}} value={formatDateForInput(processData.startDate)} onChange={(e)=>{ handleFormChange({propertyName: 'startDate', value: e.target.value}) }} className="shadow-01" />
+                        </div>
+                    </section>
 
-            <footer>
-                <Button label="Cadastrar Processo" onClick={handleClickRegisterProcess} loading={isLoading} />
-            </footer>
+                    <footer>
+                        <Button label="Cadastrar Processo" onClick={handleClickRegisterProcess} />
+                    </footer>
+                </>
+            }
         </div>
     )
 }
