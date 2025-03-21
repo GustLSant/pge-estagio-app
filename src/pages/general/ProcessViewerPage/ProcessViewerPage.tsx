@@ -75,6 +75,20 @@ export default function ProcessViewerPage(){
                         <div className="row-separator"></div>
 
                         <div className="process-viewer-page__info">
+                            <p>Procurador:</p>
+                            <p title={`id: ${data.attorneyId}`}>{data.attorneyFullName}</p>
+                        </div>
+
+                        <div className="row-separator"></div>
+
+                        <div className="process-viewer-page__info">
+                            <p>Cliente:</p>
+                            <p title={`id: ${data.clientId}`}>{data.clientFullName}</p>
+                        </div>
+
+                        <div className="row-separator"></div>
+
+                        <div className="process-viewer-page__info">
                             <p>Local de tramitação:</p>
                             <p>{data.place}</p>
                         </div>
