@@ -14,6 +14,8 @@ Esse projeto foi realizado tendo como alvo a vaga de Desenvolvedor Front-end, se
 
 A ideia foi criar um ambiente que simula uma aplicação real, com integração entre front-end e servidor (incluindo o delay natural das requisições HTTP), proporcionando uma experiência mais próxima da realidade.
 
+Detalhes sobre o sistema de login e de proteção de rotas podem ser encontrados no arquivo `./Docs.md`
+
 
 ## Manual de execução do projeto
 O projeto utiliza o Node.js como ambiente de execução.
