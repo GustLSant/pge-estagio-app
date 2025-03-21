@@ -13,7 +13,7 @@ const defaultProps:LoadingIconsProps = {
     label: 'Carregando...',
     hasLabel: true,
     fontSize: '1em',
-    iconSize: '1em',
+    iconSize: '1.3em',
 }
 
 

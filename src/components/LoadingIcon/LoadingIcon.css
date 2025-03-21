@@ -3,6 +3,6 @@
     align-items: center;
     justify-content: center;
     width: 100%; /* para conseguir se centralizar onde estiver */
-    min-height: 20px; /* para a animacao de rotacao do svg nao ficar causando scroll */
+    min-height: 24px; /* para a animacao de rotacao do svg nao ficar causando scroll */
     gap: 5px;
 }
