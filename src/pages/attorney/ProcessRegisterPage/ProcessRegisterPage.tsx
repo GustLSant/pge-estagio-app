@@ -107,18 +107,16 @@ export default function ProcessRegisterPage(){
             </div>
 
             <section>
-                <TextInput label="Número"                   value={processData.number}         onChange={(e)=>{handleFormChange({propertyName: 'number', value: e.target.value})}}         error={canShowErrors && processData.number === ''}        helperText="Insira o número do processo" disabled={isLoading} />
-                <TextInput label="Nome completo do cliente" value={processData.clientFullName} onChange={(e)=>{handleFormChange({propertyName: 'clientFullName', value: e.target.value})}} error={canShowErrors && clientFullName === ''}            helperText="Insira o nome do cliente"    disabled={isLoading} />
-                <TextInput label="Local"                    value={processData.place}          onChange={(e)=>{handleFormChange({propertyName: 'place', value: e.target.value})}}          error={canShowErrors && processData.place === ''}         helperText="Insira o local do processo"  disabled={isLoading} />
-                <TextInput label="Vara"                     value={processData.courtDivision}  onChange={(e)=>{handleFormChange({propertyName: 'courtDivision', value: e.target.value})}}  error={canShowErrors && processData.courtDivision === ''} helperText="Insira o nome da Vara"       disabled={isLoading} />
-                <TextInput label="Tribunal"                 value={processData.court}          onChange={(e)=>{handleFormChange({propertyName: 'court', value: e.target.value})}}          error={canShowErrors && processData.court === ''}         helperText="Insira o nome do Tribunal"   disabled={isLoading} />
+                <TextInput label="Número"                   value={processData.number}         onChange={(e)=>{handleFormChange({propertyName: 'number', value: e.target.value})}}         error={canShowErrors && processData.number === ''}         helperText="Insira o número do processo" disabled={isLoading} />
+                <TextInput label="Nome completo do cliente" value={processData.clientFullName} onChange={(e)=>{handleFormChange({propertyName: 'clientFullName', value: e.target.value})}} error={canShowErrors && processData.clientFullName === ''} helperText="Insira o nome do cliente"    disabled={isLoading} />
+                <TextInput label="Local"                    value={processData.place}          onChange={(e)=>{handleFormChange({propertyName: 'place', value: e.target.value})}}          error={canShowErrors && processData.place === ''}          helperText="Insira o local do processo"  disabled={isLoading} />
+                <TextInput label="Vara"                     value={processData.courtDivision}  onChange={(e)=>{handleFormChange({propertyName: 'courtDivision', value: e.target.value})}}  error={canShowErrors && processData.courtDivision === ''}  helperText="Insira o nome da Vara"       disabled={isLoading} />
+                <TextInput label="Tribunal"                 value={processData.court}          onChange={(e)=>{handleFormChange({propertyName: 'court', value: e.target.value})}}          error={canShowErrors && processData.court === ''}          helperText="Insira o nome do Tribunal"   disabled={isLoading} />
                 <div className="process-page__date-input-container">
                     <p>Data de Início: </p>
                     <input type="date" onKeyDown={(e)=>{e.preventDefault()}} value={formatDateForInput(processData.startDate)} onChange={(e)=>{ handleFormChange({propertyName: 'startDate', value: e.target.value}) }} className={`shadow-01 ${(isLoading) ? 'disabled' : ''}`} disabled={isLoading} />
                 </div>
             </section>
-
-            <p onClick={()=>{console.log(processData)}}>auiwdhjauowd</p>
 
             <footer>
                 <Button label="Cadastrar Processo" onClick={handleClickRegisterProcess} loading={isLoading} />
