@@ -31,7 +31,7 @@ export default function Navbar(){
     }
 
     function handleMouseLeave(){
-        // if(state === 'initialOpen' || state === 'open'){ setState('closed'); }
+        if(state === 'initialOpen' || state === 'open'){ setState('closed'); }
     }
 
     function handleClickOutsideNavbar(event: MouseEvent){
