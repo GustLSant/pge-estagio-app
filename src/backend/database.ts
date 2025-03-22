@@ -12,13 +12,13 @@ export const defaultDatabase:Database = {
     accountCredentials: [
         {
             id: 0,
-            email: 'jr',
-            password: 'jrsenha',
+            email: 'josericardo@gmail.com',
+            password: 'josesenha',
         },
         {
             id: 1,
-            email: 'ch',
-            password: 'chsenha',
+            email: 'carloshenrique@gmail.com',
+            password: 'carlossenha',
         },
         {
             id: 2,
