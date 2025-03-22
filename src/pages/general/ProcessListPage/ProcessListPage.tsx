@@ -124,12 +124,12 @@ export default function ProcessListPage(){
 
     return(
         <div className="process-list-page">
-            <header>
+            <header className="fade-in-top">
                 <BiFile />
                 <h2>Processos</h2>
             </header>
             
-            <section className="process-list-page__container-settings">
+            <section className="process-list-page__container-settings fade-in-top">
                 <div className="process-list-page-settings__container-filters">
                     <div className={`process-list-page__filter-option ${(filter === 'none') ? 'active' : ''}`} onClick={()=>{handleClickFilterOption('none')}} >
                         <p>Total</p>
@@ -167,7 +167,7 @@ export default function ProcessListPage(){
                 </div>
             </section>
             
-            <TextInput label="Pesquisar por número" value={searchString} onChange={handleChangeSearchString} />
+            <TextInput label="Pesquisar por número" value={searchString} onChange={handleChangeSearchString} className="fade-in-top" />
         
             <section className="process-list-page__table-section">
                 {
@@ -187,9 +187,9 @@ export default function ProcessListPage(){
                         </thead>
                         <tbody>
                             {
-                                refinedData.map((element:Process, idx)=>{
+                                refinedData.map((element:Process, idx: number)=>{
                                     return(
-                                        <tr key={idx} onClick={()=>{handleClickProcess(element.id)}}>
+                                        <tr key={idx} onClick={()=>{handleClickProcess(element.id)}} className="fade-in-left" style={{animationDelay: `${idx*0.04}s`}}>
                                             <td>{element.number}</td>
                                             <td>{getDiegestableStatusName(element.status)}</td>
                                             <td>{formatDate(element.startDate)}</td>
@@ -206,7 +206,7 @@ export default function ProcessListPage(){
             {
                 (authContext?.user?.role === 'attorney') &&
                 (refinedData !== undefined && !isLoading && refinedData.length !== 0) &&
-                <footer>
+                <footer className="fade-in-left">
                     <Button label="Cadastrar Processo" onClick={()=>{navigate('/procurador/cadastrar-processo')}} />
                 </footer>
             }

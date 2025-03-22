@@ -64,3 +64,40 @@ a:visited{
       transform: rotate(360deg);
   }
 }
+
+
+.fade-in-left{
+  opacity: 0%;
+  animation-name: fade-in-left;
+  animation-duration: 0.15s;
+  animation-fill-mode: forwards;
+}
+
+.fade-in-top{
+  opacity: 0%;
+  animation-name: fade-in-top;
+  animation-duration: 0.15s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fade-in-left {
+  0%{
+    transform: translateX(-20px);
+    opacity: 0%;
+  }
+  100%{
+    transform: translateX(0px);
+    opacity: 100%;
+  }
+}
+
+@keyframes fade-in-top {
+  0%{
+    transform: translateY(-20px);
+    opacity: 0%;
+  }
+  100%{
+    transform: translateX(0px);
+    opacity: 100%;
+  }
+}

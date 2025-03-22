@@ -48,12 +48,12 @@ export default function ProcessViewerPage(){
 
     return(
         <div className="process-viewer-page">
-            <header>
+            <header className="fade-in-top">
                 <BiFile />
                 <h2>Visualizar Processo</h2>
             </header>
             
-            <div>
+            <div className="fade-in-top">
                 <Button label="Voltar" leftIcon={BiArrowBack} onClick={handleClickBackButton} variant="outlined" paddingHorizontal="10px" paddingVertical="5px" />
             </div>
             
@@ -62,9 +62,9 @@ export default function ProcessViewerPage(){
                 (isLoading) ? <LoadingIcon /> :
                 (data === undefined) ? <p>Algo deu errado, por favor recarregue a página.</p> :
                 <>
-                    <p>Processo de número: {data.number}</p>
+                    <p className="fade-in-left">Processo de número: {data.number}</p>
 
-                    <div className="process-viewer-page__infos-container">
+                    <div className="process-viewer-page__infos-container fade-in-left">
                         <div className="row-separator"></div>
 
                         <div className="process-viewer-page__info">
@@ -126,7 +126,7 @@ export default function ProcessViewerPage(){
 
                     {
                         (authContext?.user?.role === 'attorney') &&
-                        <footer>
+                        <footer className="fade-in-left">
                             <Button label="Editar Processo" onClick={()=>{navigate(`/procurador/editar-processo/${id}`)}} />
                         </footer>
                     }

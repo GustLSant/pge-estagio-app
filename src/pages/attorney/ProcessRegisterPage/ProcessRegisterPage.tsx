@@ -98,19 +98,19 @@ export default function ProcessRegisterPage(){
 
     return(
         <div className="process-register-page">
-            <header>
+            <header className="fade-in-top">
                 <BiEdit />
                 <h2>Cadastrar Processo</h2>
             </header>
 
-            <div>
+            <div className="fade-in-top">
                 <Button label="Voltar" leftIcon={BiArrowBack} onClick={handleClickBackButton} variant="outlined" paddingHorizontal="10px" paddingVertical="5px" />
             </div>
 
             {
                 isLoading ? <LoadingIcon /> :
                 <>
-                    <section>
+                    <section className="fade-in-left">
                         <TextInput label="Número"                   value={processData.number}         onChange={(e)=>{handleFormChange({propertyName: 'number', value: e.target.value})}}         error={canShowErrors && processData.number === ''}         helperText="Insira o número do processo" />
                         <TextInput label="Nome completo do cliente" value={processData.clientFullName} onChange={(e)=>{handleFormChange({propertyName: 'clientFullName', value: e.target.value})}} error={canShowErrors && processData.clientFullName === ''} helperText="Insira o nome do cliente"    />
                         <TextInput label="Local"                    value={processData.place}          onChange={(e)=>{handleFormChange({propertyName: 'place', value: e.target.value})}}          error={canShowErrors && processData.place === ''}          helperText="Insira o local do processo"  />
@@ -122,7 +122,7 @@ export default function ProcessRegisterPage(){
                         </div>
                     </section>
 
-                    <footer>
+                    <footer className="fade-in-left">
                         <Button label="Cadastrar Processo" onClick={handleClickRegisterProcess} />
                     </footer>
                 </>

@@ -108,19 +108,19 @@ export default function ProcessEditPage(){
 
     return(
         <div className="process-edit-page">
-            <header>
+            <header className="fade-in-top">
                 <BiEdit />
                 <h2>Editar Processo</h2>
             </header>
 
-            <div>
+            <div className="fade-in-top">
                 <Button label="Voltar" leftIcon={BiArrowBack} onClick={()=>{navigate(-1);}} variant="outlined" paddingHorizontal="10px" paddingVertical="5px" />
             </div>
 
             {
                 isLoading ? <LoadingIcon /> :
                 <>
-                    <section>
+                    <section className="fade-in-left">
                         <TextInput label="Número"                   value={processData.number}         onChange={(e)=>{handleFormChange({propertyName: 'number', value: e.target.value})}}         error={canShowErrors && processData.number === ''}         helperText="Insira o número do processo" disabled={isLoading} />
                         <TextInput label="Nome completo do cliente" value={processData.clientFullName} onChange={(e)=>{handleFormChange({propertyName: 'clientFullName', value: e.target.value})}} error={canShowErrors && processData.clientFullName === ''} helperText="Insira o nome do cliente"    disabled={isLoading} />
                         <TextInput label="Local"                    value={processData.place}          onChange={(e)=>{handleFormChange({propertyName: 'place', value: e.target.value})}}          error={canShowErrors && processData.place === ''}          helperText="Insira o local do processo"  disabled={isLoading} />
@@ -132,9 +132,7 @@ export default function ProcessEditPage(){
                         </div>
                     </section>
 
-                    <p onClick={()=>{console.log(processData)}}>aowidjawouid</p>
-
-                    <footer>
+                    <footer className="fade-in-left">
                         <Button label="Salvar Alterações" onClick={handleClickSaveEdits} loading={isLoading} />
                     </footer>
                 </>

@@ -9,6 +9,7 @@ type TextInputProps = {
     helperText?: string,
     error?: boolean,
     disabled?: boolean,
+    className?: string,
 }
 
 const defaultOnChangeFunc = (_e: React.ChangeEvent<HTMLInputElement>)=>{}
@@ -22,6 +23,7 @@ const defaultProps:TextInputProps = {
     helperText: '',
     error: false,
     disabled: false,
+    className: '',
 }
 
 
@@ -30,7 +32,7 @@ export default function TextInput(_props:TextInputProps){
     
     const errorClass = (props.error) ? 'error' : '';
     const disabledClass = (props.disabled) ? 'disabled' : '';
-    const fullClass = 'text-input ' + errorClass + ' ' + disabledClass
+    const fullClass = 'text-input ' + errorClass + ' ' + disabledClass + props.className;
 
     
     return(

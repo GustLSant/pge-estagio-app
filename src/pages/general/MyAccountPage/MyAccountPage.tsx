@@ -1,11 +1,12 @@
 import { ChangeEvent, useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import { AuthContext } from "../../../contexts/AuthContext";
 import { User, Response } from "../../../types";
 import { formatDate } from "../../../utils";
 import Button from "../../../components/Button/Button";
 import Modal from "../../../components/Modal/Modal";
 import TextInput from "../../../components/TextInput/TextInput";
-import { BiUserCircle } from "react-icons/bi";
+import { BiUserCircle, BiArrowBack } from "react-icons/bi";
 import LoadingIcon from "../../../components/LoadingIcon/LoadingIcon";
 import { tryChangePassword } from "../../../backend/server";
 import './MyAccountPage.css';
@@ -16,6 +17,7 @@ export default function MyAccountPage(){
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [isChangingPassword, setIsChangingPassword] = useState<boolean>(false);
     const authContext = useContext(AuthContext);
+    const navigate = useNavigate();
 
     // states do modal de trocar senha
     const [currentPassword, setCurrentPassword] = useState<string>('');
@@ -75,10 +77,14 @@ export default function MyAccountPage(){
 
     return(
         <div className="my-account-page">
-            <header className="my-account-page__header">
+            <header className="fade-in-top">
                 <BiUserCircle />
                 <h2>Minha Conta</h2>
             </header>
+
+            <div className="fade-in-top">
+                <Button label="Voltar" leftIcon={BiArrowBack} onClick={()=>{navigate(-1);}} variant="outlined" paddingHorizontal="10px" paddingVertical="5px" />
+            </div>
 
             {
                 isChangingPassword
@@ -105,7 +111,7 @@ export default function MyAccountPage(){
                 (!userData) ? <p>Algo deu errador, por favor recarregue a página.</p>
                 :
                 <>
-                    <section className="my-account-page__infos-container">
+                    <section className="my-account-page__infos-container fade-in-left">
                         {
                             <>
                             <div className="row-separator"></div>
@@ -159,7 +165,7 @@ export default function MyAccountPage(){
                         }
                     </section>
 
-                    <section className="my-account-page__buttons-container">
+                    <section className="my-account-page__buttons-container fade-in-left">
                         <Button label="Alterar Senha" onClick={handleClickChangePassword} />
                     </section>
                 </>

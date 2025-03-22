@@ -111,7 +111,7 @@ export default function LoginPage(){
             <section className='login-page__right-section'>
                 {/* <img className='right-section__logo' src="/logo.png" alt="Procuradoria Geral do Estado de Sergipe" /> */}
 
-                <div className='right-section__login-container' onKeyDown={handleKeyDown}>
+                <div className='right-section__login-container fade-in-left' onKeyDown={handleKeyDown}>
                     <div>
                         <h1>Seja bem-vindo!</h1>
                         <h2>Digite suas credenciais nos campos abaixo:</h2>
@@ -122,7 +122,7 @@ export default function LoginPage(){
                     </div>
                     <div className='login-container__buttons-container'>
                         <Button label='Entrar' onClick={handleClickLoginButton} loading={isLoading} rightIcon={BiLogIn} fontSize='1.0em' grow />
-                        <p className='login-container__forgot-password'>Esqueci minha senha</p>
+                        {/* <p className='login-container__forgot-password'>Esqueci minha senha</p> */}
                     </div>
                 </div>
             </section>

@@ -12,7 +12,7 @@ type ModalProps = {
 export default function Modal({ handleCloseFunction, children }: ModalProps){
 
     return(
-        <div className="modal">
+        <div className="modal fade-in-left">
             <div className="modal__exit-area" onClick={handleCloseFunction}></div>
 
             <div className="modal__content-container">
