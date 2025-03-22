@@ -184,7 +184,7 @@ export function registerProcess(process: Process): Promise<Response>{
     return new Promise((resolve, reject)=>{
         const processSessionData: string | null = sessionStorage.getItem('process');
         const usersSessionData: string | null = sessionStorage.getItem('users');
-    
+
         if(processSessionData && usersSessionData){
             const allProcess: Process[] = JSON.parse(processSessionData);
             const allUsers: User[] = JSON.parse(usersSessionData);
@@ -192,15 +192,15 @@ export function registerProcess(process: Process): Promise<Response>{
             const foundUser: User | undefined = allUsers.find((element: User)=>{return(element.fullName === process.clientFullName)});
             let clientId: number = (foundUser) ? foundUser.id : -1;
             process.clientId = clientId;
-            process.id = allProcess[allProcess.length-1].id + 1;
             
             if(clientId === -1){ console.warn('Cliente com nome', process.clientFullName, 'não encontrado.'); }
 
-            let processIdx: number = allProcess.findIndex((process: Process) => process.id === process.id);
+            let processIdx: number = allProcess.findIndex((element: Process) => {return (element.id === process.id)});
             if(processIdx !== -1){
                 allProcess[processIdx] = process;
             }
             else{
+                process.id = getNextAvailableId(allProcess);
                 allProcess.push(process);
             }
             
@@ -232,6 +232,22 @@ function getUserDataFromAccountCredentials(credentials: AccountCredentials){
         else{ return undefined }
     }
     else{ return undefined }
+}
+
+
+function getNextAvailableId(array: Process[]): number{
+    let availableId: number = 0;
+
+    // descobre qual o maior ID
+    for(let i=0; i<array.length; i++){
+        if(array[i].id > availableId){
+            availableId = array[i].id;
+        }
+    }
+
+    availableId += 1;
+
+    return availableId;
 }
 
 
