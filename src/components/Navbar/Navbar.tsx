@@ -34,8 +34,10 @@ export default function Navbar(){
         if(state === 'initialOpen' || state === 'open'){ setState('closed'); }
     }
 
-    function handleClickOutsideNavbar(event: MouseEvent){
-        if (navbarRef.current && !navbarRef.current.contains(event.target as Node)) {
+    function handleClickOutsideNavbar(event: MouseEvent | TouchEvent){
+        const target = (event instanceof TouchEvent) ? event.touches[0].target : event.target;
+        
+        if (navbarRef.current && target instanceof Node && !navbarRef.current.contains(target as Node)) {
           if(state === 'initialOpen'){ setState('closed'); }
         }
     };
@@ -43,11 +45,19 @@ export default function Navbar(){
 
     useEffect(() => {
         document.addEventListener('click', handleClickOutsideNavbar);
+        document.addEventListener('touchstart', handleClickOutsideNavbar);
         
         return () => {
           document.removeEventListener('click', handleClickOutsideNavbar);
+          document.removeEventListener('touchstart', handleClickOutsideNavbar);
         };
     }, []);
+
+
+    // para começar com a navbar fechada em caso de abrir a aplicação no celular
+    useEffect(()=>{
+        if(window.innerWidth < 600){ setState('closed') }
+    }, [])
 
 
     function handleClickExitButton(){
