@@ -4,6 +4,9 @@
     display: flex;
     align-items: stretch;
     overflow: hidden;
+    
+    max-width: 2000px;
+    margin: auto;
 
     .app-layout__content-container{
         flex-grow: 1;

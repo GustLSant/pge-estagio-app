@@ -5,7 +5,7 @@ import './AppLayout.css'
 
 export default function AppLayout(){
     return(
-        <div className="app-layout">
+        <div className="app-layout shadow-01">
             <Navbar />
             <div className="app-layout__content-container">
                 <Outlet />
