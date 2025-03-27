@@ -33,11 +33,11 @@ export default function LoginPage(){
     
 
     function onChangeEmailInput(e: React.ChangeEvent<HTMLInputElement>){
-        setEmail(e.target.value);
+        setEmail(e.target.value.replace(/\s/g, ""));
     }
 
     function onChangePasswordlInput(e: React.ChangeEvent<HTMLInputElement>){
-        setPassword(e.target.value);
+        setPassword(e.target.value.replace(/\s/g, ""));
     }
 
 
@@ -68,7 +68,7 @@ export default function LoginPage(){
             setIsLoading(true);
 
             await simulateNetworkDelay();
-            tryLogin(email, password)
+            tryLogin(email.toLowerCase(), password.toLowerCase())
             .then((response: Response)=>{
                 sessionStorage.setItem('currentUser', JSON.stringify(response.data)); /* guardando os dados para o caso de refresh na pagina ou alteracao manual da url */
                 if(authContext?.setUser){

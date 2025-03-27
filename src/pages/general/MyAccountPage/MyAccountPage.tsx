@@ -28,13 +28,13 @@ export default function MyAccountPage(){
 
     // setters do modal de trocar senha
     function handleChangeCurrentPasswordInput(e:ChangeEvent<HTMLInputElement>){
-        setCurrentPassword(e.target.value);
+        setCurrentPassword(e.target.value.replace(/\s/g, ""));
     }
     function handleChangeNewPasswordInput(e:ChangeEvent<HTMLInputElement>){
-        setNewPassword(e.target.value);
+        setNewPassword(e.target.value.replace(/\s/g, ""));
     }
     function handleChangeConfirmNewPasswordInput(e:ChangeEvent<HTMLInputElement>){
-        setConfirmNewPassword(e.target.value);
+        setConfirmNewPassword(e.target.value.replace(/\s/g, ""));
     }
 
 
@@ -57,16 +57,19 @@ export default function MyAccountPage(){
     function handleClickConfirmChangePassword(){
         if(newPassword === confirmNewPassword){
             setDifferentPasswords(false);
-            if(authContext?.user){
-                tryChangePassword(authContext.user, currentPassword, newPassword)
-                .then((response: Response)=>{
-                    console.log(response);
-                    setIsChangingPassword(false);
-                })
-                .catch((error: Response)=>{
-                    if(error.status === 401){ setWrongPassword(true); }
-                    console.error(error);
-                })
+            
+            if(newPassword.length > 0){
+                if(authContext?.user){
+                    tryChangePassword(authContext.user, currentPassword.toLowerCase(), newPassword.toLowerCase())
+                    .then((response: Response)=>{
+                        console.log(response);
+                        setIsChangingPassword(false);
+                    })
+                    .catch((error: Response)=>{
+                        if(error.status === 401){ setWrongPassword(true); }
+                        console.error(error);
+                    })
+                }
             }
         }
         else{
